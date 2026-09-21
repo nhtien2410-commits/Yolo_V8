@@ -1,0 +1,539 @@
+#VRML_SIM R2025a utf8
+# license: Apache License 2.0
+# tags: visual, mechanical
+
+PROTO BerryBot [
+  field SFVec3f    translation     0 0 0
+  field SFRotation rotation        0 0 1 0
+  field SFString   name            "BerryBot"
+  field SFString   controller      "2"
+  field MFString   controllerArgs  []
+  field SFString   customData      ""
+  field SFBool     supervisor      FALSE
+  field SFBool     synchronization TRUE
+  field SFInt32    camera_width    640
+  field SFInt32    camera_height   480
+]
+{
+  Robot {
+    translation IS translation
+    rotation IS rotation
+    name IS name
+    controller IS controller
+    controllerArgs IS controllerArgs
+    customData IS customData
+    supervisor IS supervisor
+    synchronization IS synchronization
+    children [
+      # ============================================================
+      # 1. KHUNG GẦM HÌNH HỘP CHỮ NHẬT NHÔM 1515 & TẤM MICA TRONG SUỐT
+      # ============================================================
+      Pose {
+        translation 0 0 0.024
+        children [
+          # Khung nhôm định hình 1515 mạ Anodize bạc hình chữ nhật
+          # Thanh dọc trái
+          Pose {
+            translation 0 0.024 0
+            children [
+              Shape {
+                appearance DEF METAL_ALU PBRAppearance {
+                  baseColor 0.82 0.84 0.86
+                  roughness 0.25
+                  metalness 0.9
+                }
+                geometry Box {
+                  size 0.096 0.015 0.015
+                }
+              }
+            ]
+          }
+          # Thanh dọc phải
+          Pose {
+            translation 0 -0.024 0
+            children [
+              Shape {
+                appearance USE METAL_ALU
+                geometry Box {
+                  size 0.096 0.015 0.015
+                }
+              }
+            ]
+          }
+          # Thanh ngang trước
+          Pose {
+            translation 0.040 0 0
+            children [
+              Shape {
+                appearance USE METAL_ALU
+                geometry Box {
+                  size 0.015 0.034 0.015
+                }
+              }
+            ]
+          }
+          # Thanh ngang sau
+          Pose {
+            translation -0.040 0 0
+            children [
+              Shape {
+                appearance USE METAL_ALU
+                geometry Box {
+                  size 0.015 0.034 0.015
+                }
+              }
+            ]
+          }
+
+          # 4 Trụ nhôm 1515 nâng tấm nóc mica
+          Pose {
+            translation 0.040 0.024 0.018
+            children [
+              Shape {
+                appearance USE METAL_ALU
+                geometry Box {
+                  size 0.008 0.008 0.020
+                }
+              }
+            ]
+          }
+          Pose {
+            translation 0.040 -0.024 0.018
+            children [
+              Shape {
+                appearance USE METAL_ALU
+                geometry Box {
+                  size 0.008 0.008 0.020
+                }
+              }
+            ]
+          }
+          Pose {
+            translation -0.040 0.024 0.018
+            children [
+              Shape {
+                appearance USE METAL_ALU
+                geometry Box {
+                  size 0.008 0.008 0.020
+                }
+              }
+            ]
+          }
+          Pose {
+            translation -0.040 -0.024 0.018
+            children [
+              Shape {
+                appearance USE METAL_ALU
+                geometry Box {
+                  size 0.008 0.008 0.020
+                }
+              }
+            ]
+          }
+
+          # Tấm nóc Mica trong suốt che bảo vệ bên trên (Lộ bo mạch Raspberry Pi)
+          Pose {
+            translation 0 0 0.028
+            children [
+              Shape {
+                appearance DEF ACRYLIC_CLEAR PBRAppearance {
+                  baseColor 0.88 0.92 0.96
+                  transparency 0.45
+                  roughness 0.1
+                  metalness 0.1
+                }
+                geometry Box {
+                  size 0.100 0.058 0.003
+                }
+              }
+              # Bo mạch Raspberry Pi Zero 2W trên nóc mica
+              Pose {
+                translation 0.010 0 0.004
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                      baseColor 0.12 0.45 0.22
+                      roughness 0.35
+                      metalness 0.2
+                    }
+                    geometry Box {
+                      size 0.034 0.022 0.004
+                    }
+                  }
+                  # Cụm dây cắm cầu vồng GPIO
+                  Pose {
+                    translation -0.005 0 0.010
+                    children [
+                      Shape {
+                        appearance PBRAppearance {
+                          baseColor 0.9 0.2 0.2
+                          roughness 0.5
+                          metalness 0.1
+                        }
+                        geometry Box {
+                          size 0.012 0.016 0.014
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+
+          # Khối Pin Li-ion 18650 Panasonic 9600mAh màu xanh lục đặt bên trong thân
+          Pose {
+            translation -0.010 0 0.008
+            children [
+              # 2 Pin Panasonic xanh đặt song song
+              Pose {
+                translation 0 0.012 0
+                rotation 0 1 0 1.5708
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                      baseColor 0.15 0.68 0.25
+                      roughness 0.3
+                      metalness 0.05
+                    }
+                    geometry Cylinder {
+                      height 0.056
+                      radius 0.009
+                    }
+                  }
+                ]
+              }
+              Pose {
+                translation 0 -0.012 0
+                rotation 0 1 0 1.5708
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                      baseColor 0.15 0.68 0.25
+                      roughness 0.3
+                      metalness 0.05
+                    }
+                    geometry Cylinder {
+                      height 0.056
+                      radius 0.009
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+
+      # ============================================================
+      # 2. CỤM CAMERA SONY IMX219 MACRO & ĐÈN FLASH STROBE
+      # ============================================================
+      Pose {
+        translation 0.048 0 0.024
+        children [
+          # Giá đỡ kim loại gắn camera trước
+          Shape {
+            appearance USE METAL_ALU
+            geometry Box {
+              size 0.010 0.032 0.018
+            }
+          }
+          # Ống kính Camera Macro Sony IMX219
+          Pose {
+            translation 0.008 -0.006 0
+            rotation 0 1 0 1.5708
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.1 0.3 0.65
+                  roughness 0.12
+                  metalness 0.75
+                }
+                geometry Cylinder {
+                  height 0.006
+                  radius 0.007
+                }
+              }
+            ]
+          }
+          # Đèn LED Flash Strobe bên cạnh ống kính
+          Pose {
+            translation 0.006 0.008 0
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.95 0.95 0.95
+                  emissiveColor 1.0 0.98 0.90
+                  emissiveIntensity 1.8
+                }
+                geometry Box {
+                  size 0.003 0.006 0.008
+                }
+              }
+            ]
+          }
+          # Node Camera Webots
+          Camera {
+            translation 0.016 -0.006 0
+            rotation 0 0 1 0
+            name "camera"
+            fieldOfView 0.95
+            width IS camera_width
+            height IS camera_height
+            near 0.01
+          }
+          # Nguồn sáng Flash Strobe
+          SpotLight {
+            attenuation 1 0 0.1
+            beamWidth 0.65
+            cutOffAngle 0.95
+            direction 1 0 0
+            intensity 1.4
+            location 0.017 0 0
+          }
+        ]
+      }
+
+      # ============================================================
+      # 3. TIẾP ĐIỂM SẠC MẠ VÀNG NHÔ DƯỚI GẦM TRƯỚC XE
+      # ============================================================
+      Pose {
+        translation 0.035 0.012 0.006
+        children [
+          Shape {
+            appearance DEF GOLD_PAD PBRAppearance {
+              baseColor 0.92 0.70 0.18
+              roughness 0.15
+              metalness 0.95
+            }
+            geometry Box {
+              size 0.020 0.006 0.002
+            }
+          }
+        ]
+      }
+      Pose {
+        translation 0.035 -0.012 0.006
+        children [
+          Shape {
+            appearance USE GOLD_PAD
+            geometry Box {
+              size 0.020 0.006 0.002
+            }
+          }
+        ]
+      }
+
+      # ============================================================
+      # 4. CẢM BIẾN QUÁN TÍNH IMU (INERTIAL UNIT)
+      # ============================================================
+      InertialUnit {
+        translation 0 0 0.024
+        name "inertial unit"
+      }
+
+      # ============================================================
+      # 5. CỤM CẢM BIẾN BÁM LINE 5 MẮT TCRT5000 (gs0, gs1, gs2)
+      # ============================================================
+      # SENSOR_TO_AXLE = 0.035m
+      DistanceSensor {
+        translation 0.035 0.011 0.005
+        rotation 0 1 0 1.5708
+        name "gs0"
+        lookupTable [
+          0 0 0
+          0.03 1000 0
+        ]
+        type "infra-red"
+        numberOfRays 1
+      }
+      DistanceSensor {
+        translation 0.035 0 0.005
+        rotation 0 1 0 1.5708
+        name "gs1"
+        lookupTable [
+          0 0 0
+          0.03 1000 0
+        ]
+        type "infra-red"
+        numberOfRays 1
+      }
+      DistanceSensor {
+        translation 0.035 -0.011 0.005
+        rotation 0 1 0 1.5708
+        name "gs2"
+        lookupTable [
+          0 0 0
+          0.03 1000 0
+        ]
+        type "infra-red"
+        numberOfRays 1
+      }
+
+      # ============================================================
+      # 6. BÁNH TỰ LỰA CÂN BẰNG PHÍA SAU (CASTER WHEEL)
+      # ============================================================
+      Pose {
+        translation -0.038 0 0.007
+        children [
+          Shape {
+            appearance DEF METAL_STEEL PBRAppearance {
+              baseColor 0.9 0.9 0.95
+              roughness 0.1
+              metalness 0.95
+            }
+            geometry Sphere {
+              radius 0.005
+            }
+          }
+        ]
+      }
+
+      # ============================================================
+      # 7. BÁNH XE CHỦ ĐỘNG VI SAI TRÁI (LEFT WHEEL)
+      # ============================================================
+      # AXLE_LENGTH = 0.052m -> y = +0.026m
+      # WHEEL_RADIUS = 0.0205m -> z = 0.0205m
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0 1 0
+          anchor 0 0.026 0.0205
+        }
+        device [
+          RotationalMotor {
+            name "left wheel motor"
+            maxVelocity 20
+            maxTorque 0.6
+          }
+          PositionSensor {
+            name "left wheel sensor"
+          }
+        ]
+        endPoint Solid {
+          translation 0 0.026 0.0205
+          rotation 1 0 0 1.5708
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.15 0.15 0.15
+                roughness 0.8
+                metalness 0.05
+              }
+              geometry Cylinder {
+                height 0.008
+                radius 0.0205
+              }
+            }
+            Shape {
+              appearance DEF PLASTIC_BLACK PBRAppearance {
+                baseColor 0.12 0.12 0.12
+                roughness 0.5
+                metalness 0.1
+              }
+              geometry Cylinder {
+                height 0.009
+                radius 0.013
+              }
+            }
+          ]
+          boundingObject Cylinder {
+            height 0.008
+            radius 0.0205
+          }
+          physics Physics {
+            density -1
+            mass 0.030
+          }
+        }
+      }
+
+      # ============================================================
+      # 8. BÁNH XE CHỦ ĐỘNG VI SAI PHẢI (RIGHT WHEEL)
+      # ============================================================
+      # AXLE_LENGTH = 0.052m -> y = -0.026m
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0 1 0
+          anchor 0 -0.026 0.0205
+        }
+        device [
+          RotationalMotor {
+            name "right wheel motor"
+            maxVelocity 20
+            maxTorque 0.6
+          }
+          PositionSensor {
+            name "right wheel sensor"
+          }
+        ]
+        endPoint Solid {
+          translation 0 -0.026 0.0205
+          rotation 1 0 0 1.5708
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.15 0.15 0.15
+                roughness 0.8
+                metalness 0.05
+              }
+              geometry Cylinder {
+                height 0.008
+                radius 0.0205
+              }
+            }
+            Shape {
+              appearance USE PLASTIC_BLACK
+              geometry Cylinder {
+                height 0.009
+                radius 0.013
+              }
+            }
+          ]
+          boundingObject Cylinder {
+            height 0.008
+            radius 0.0205
+          }
+          physics Physics {
+            density -1
+            mass 0.030
+          }
+        }
+      }
+    ]
+
+    # ============================================================
+    # VẬT LÝ KHUNG XE VÀ VA CHẠM
+    # ============================================================
+    boundingObject Group {
+      children [
+        Pose {
+          translation 0 0 0.024
+          children [
+            Box {
+              size 0.098 0.056 0.022
+            }
+          ]
+        }
+        Pose {
+          translation -0.038 0 0.005
+          children [
+            Sphere {
+              radius 0.005
+            }
+          ]
+        }
+      ]
+    }
+    physics Physics {
+      density -1
+      mass 0.32
+      centerOfMass [
+        -0.005 0 0.018
+      ]
+      inertiaMatrix [
+        0.0003 0.0004 0.0005
+        0 0 0
+      ]
+    }
+  }
+}

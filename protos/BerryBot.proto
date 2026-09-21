@@ -1,0 +1,883 @@
+#VRML_SIM R2025a utf8
+# license: Apache License 2.0
+# tags: visual, mechanical
+
+PROTO BerryBot [
+  field SFVec3f    translation     0 0 0
+  field SFRotation rotation        0 0 1 0
+  field SFString   name            "BerryBot"
+  field SFString   controller      "2"
+  field MFString   controllerArgs  []
+  field SFString   customData      ""
+  field SFBool     supervisor      FALSE
+  field SFBool     synchronization TRUE
+  field SFInt32    camera_width    640
+  field SFInt32    camera_height   480
+]
+{
+  Robot {
+    translation IS translation
+    rotation IS rotation
+    name IS name
+    controller IS controller
+    controllerArgs IS controllerArgs
+    customData IS customData
+    supervisor IS supervisor
+    synchronization IS synchronization
+    children [
+      # ============================================================
+      # 1. BẢNG VẬT LIỆU CHUẨN THIẾT KẾ CÔNG NGHIỆP PROTOTYPE
+      # ============================================================
+      # Nhôm định hình T-slot đen anodized
+      # Ke góc kim loại, bu-lông, ti phuộc thép chrome
+      # Vỏ hộp điều khiển đen nhám chống nước IP67
+      # Lốp cao su gai địa hình màu đen
+      # Nút E-stop đỏ, LED báo trạng thái xanh/vàng
+      # Đèn LED Ring Light sáng tròn đồng tâm
+
+      # ============================================================
+      # 2. KHUNG GẦM CHASSIS NHÔM ĐỊNH HÌNH T-SLOT ĐEN ANODIZED
+      # ============================================================
+      Pose {
+        translation 0 0 0.024
+        children [
+          # --- Khung nhôm hộp chữ nhật T-slot đen ---
+          Pose {
+            translation 0 0.025 0
+            children [
+              Shape {
+                appearance DEF ALU_BLACK PBRAppearance {
+                  baseColor 0.11 0.11 0.12
+                  roughness 0.38
+                  metalness 0.85
+                }
+                geometry Box {
+                  size 0.096 0.010 0.012
+                }
+              }
+            ]
+          }
+          Pose {
+            translation 0 -0.025 0
+            children [
+              Shape {
+                appearance USE ALU_BLACK
+                geometry Box {
+                  size 0.096 0.010 0.012
+                }
+              }
+            ]
+          }
+          Pose {
+            translation 0.042 0 0
+            children [
+              Shape {
+                appearance USE ALU_BLACK
+                geometry Box {
+                  size 0.010 0.040 0.012
+                }
+              }
+            ]
+          }
+          Pose {
+            translation -0.042 0 0
+            children [
+              Shape {
+                appearance USE ALU_BLACK
+                geometry Box {
+                  size 0.010 0.040 0.012
+                }
+              }
+            ]
+          }
+
+          # --- Tấm ốp gầm kim loại ---
+          Pose {
+            translation 0 0 -0.007
+            children [
+              Shape {
+                appearance DEF METAL_CHROME PBRAppearance {
+                  baseColor 0.82 0.84 0.86
+                  roughness 0.22
+                  metalness 0.95
+                }
+                geometry Box {
+                  size 0.088 0.044 0.002
+                }
+              }
+            ]
+          }
+
+          # --- Tấm cản trước có bu-lông ---
+          Pose {
+            translation 0.048 0 -0.004
+            children [
+              Shape {
+                appearance USE METAL_CHROME
+                geometry Box {
+                  size 0.003 0.042 0.012
+                }
+              }
+              Pose {
+                translation 0.002 0.014 0.003
+                rotation 0 1 0 1.5708
+                children [
+                  Shape {
+                    appearance USE METAL_CHROME
+                    geometry Cylinder {
+                      height 0.002
+                      radius 0.0015
+                    }
+                  }
+                ]
+              }
+              Pose {
+                translation 0.002 -0.014 0.003
+                rotation 0 1 0 1.5708
+                children [
+                  Shape {
+                    appearance USE METAL_CHROME
+                    geometry Cylinder {
+                      height 0.002
+                      radius 0.0015
+                    }
+                  }
+                ]
+              }
+              Pose {
+                translation 0.002 0.014 -0.003
+                rotation 0 1 0 1.5708
+                children [
+                  Shape {
+                    appearance USE METAL_CHROME
+                    geometry Cylinder {
+                      height 0.002
+                      radius 0.0015
+                    }
+                  }
+                ]
+              }
+              Pose {
+                translation 0.002 -0.014 -0.003
+                rotation 0 1 0 1.5708
+                children [
+                  Shape {
+                    appearance USE METAL_CHROME
+                    geometry Cylinder {
+                      height 0.002
+                      radius 0.0015
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+
+          # --- 4 Ke góc vuông kim loại ---
+          Pose {
+            translation 0.035 0.018 0.006
+            children [
+              Shape {
+                appearance USE METAL_CHROME
+                geometry Box {
+                  size 0.008 0.008 0.003
+                }
+              }
+            ]
+          }
+          Pose {
+            translation 0.035 -0.018 0.006
+            children [
+              Shape {
+                appearance USE METAL_CHROME
+                geometry Box {
+                  size 0.008 0.008 0.003
+                }
+              }
+            ]
+          }
+          Pose {
+            translation -0.035 0.018 0.006
+            children [
+              Shape {
+                appearance USE METAL_CHROME
+                geometry Box {
+                  size 0.008 0.008 0.003
+                }
+              }
+            ]
+          }
+          Pose {
+            translation -0.035 -0.018 0.006
+            children [
+              Shape {
+                appearance USE METAL_CHROME
+                geometry Box {
+                  size 0.008 0.008 0.003
+                }
+              }
+            ]
+          }
+        ]
+      }
+
+      # ============================================================
+      # 3. MÔ PHỎNG 4 CỤM GIẢM XÓC LÒ XO COILOVER SUSPENSION
+      # ============================================================
+      Pose {
+        translation 0.034 0.023 0.021
+        rotation 1 0 0 -0.15
+        children [
+          Shape {
+            appearance USE METAL_CHROME
+            geometry Cylinder {
+              height 0.018
+              radius 0.0018
+            }
+          }
+          Shape {
+            appearance DEF SPRING_RED PBRAppearance {
+              baseColor 0.85 0.15 0.15
+              roughness 0.25
+              metalness 0.8
+            }
+            geometry Cylinder {
+              height 0.013
+              radius 0.0038
+            }
+          }
+        ]
+      }
+      Pose {
+        translation 0.034 -0.023 0.021
+        rotation 1 0 0 0.15
+        children [
+          Shape {
+            appearance USE METAL_CHROME
+            geometry Cylinder {
+              height 0.018
+              radius 0.0018
+            }
+          }
+          Shape {
+            appearance USE SPRING_RED
+            geometry Cylinder {
+              height 0.013
+              radius 0.0038
+            }
+          }
+        ]
+      }
+      Pose {
+        translation -0.034 0.023 0.021
+        rotation 1 0 0 -0.15
+        children [
+          Shape {
+            appearance USE METAL_CHROME
+            geometry Cylinder {
+              height 0.018
+              radius 0.0018
+            }
+          }
+          Shape {
+            appearance USE SPRING_RED
+            geometry Cylinder {
+              height 0.013
+              radius 0.0038
+            }
+          }
+        ]
+      }
+      Pose {
+        translation -0.034 -0.023 0.021
+        rotation 1 0 0 0.15
+        children [
+          Shape {
+            appearance USE METAL_CHROME
+            geometry Cylinder {
+              height 0.018
+              radius 0.0018
+            }
+          }
+          Shape {
+            appearance USE SPRING_RED
+            geometry Cylinder {
+              height 0.013
+              radius 0.0038
+            }
+          }
+        ]
+      }
+
+      # --- 2 Bánh trước địa hình (Visual Dummy - không chạm sàn) ---
+      Pose {
+        translation 0.034 0.029 0.0225
+        rotation 1 0 0 1.5708
+        children [
+          Shape {
+            appearance DEF TIRE_RUBBER PBRAppearance {
+              baseColor 0.10 0.10 0.10
+              roughness 0.88
+              metalness 0.02
+            }
+            geometry Cylinder {
+              height 0.009
+              radius 0.0195
+            }
+          }
+          Shape {
+            appearance DEF WHEEL_RIM PBRAppearance {
+              baseColor 0.20 0.20 0.22
+              roughness 0.35
+              metalness 0.8
+            }
+            geometry Cylinder {
+              height 0.010
+              radius 0.013
+            }
+          }
+          Shape {
+            appearance USE METAL_CHROME
+            geometry Cylinder {
+              height 0.012
+              radius 0.0035
+            }
+          }
+        ]
+      }
+      Pose {
+        translation 0.034 -0.029 0.0225
+        rotation 1 0 0 1.5708
+        children [
+          Shape {
+            appearance USE TIRE_RUBBER
+            geometry Cylinder {
+              height 0.009
+              radius 0.0195
+            }
+          }
+          Shape {
+            appearance USE WHEEL_RIM
+            geometry Cylinder {
+              height 0.010
+              radius 0.013
+            }
+          }
+          Shape {
+            appearance USE METAL_CHROME
+            geometry Cylinder {
+              height 0.012
+              radius 0.0035
+            }
+          }
+        ]
+      }
+
+      # --- 2 Bánh sau địa hình (Visual Dummy - không chạm sàn) ---
+      Pose {
+        translation -0.034 0.029 0.0225
+        rotation 1 0 0 1.5708
+        children [
+          Shape {
+            appearance USE TIRE_RUBBER
+            geometry Cylinder {
+              height 0.009
+              radius 0.0195
+            }
+          }
+          Shape {
+            appearance USE WHEEL_RIM
+            geometry Cylinder {
+              height 0.010
+              radius 0.013
+            }
+          }
+          Shape {
+            appearance USE METAL_CHROME
+            geometry Cylinder {
+              height 0.012
+              radius 0.0035
+            }
+          }
+        ]
+      }
+      Pose {
+        translation -0.034 -0.029 0.0225
+        rotation 1 0 0 1.5708
+        children [
+          Shape {
+            appearance USE TIRE_RUBBER
+            geometry Cylinder {
+              height 0.009
+              radius 0.0195
+            }
+          }
+          Shape {
+            appearance USE WHEEL_RIM
+            geometry Cylinder {
+              height 0.010
+              radius 0.013
+            }
+          }
+          Shape {
+            appearance USE METAL_CHROME
+            geometry Cylinder {
+              height 0.012
+              radius 0.0035
+            }
+          }
+        ]
+      }
+
+      # ============================================================
+      # 4. CỘT ĐỨNG NHÔM ĐỊNH HÌNH T-SLOT (VERTICAL MAST)
+      # ============================================================
+      Pose {
+        translation 0.005 0 0.052
+        children [
+          Shape {
+            appearance USE ALU_BLACK
+            geometry Box {
+              size 0.014 0.014 0.054
+            }
+          }
+          Pose {
+            translation 0.0071 0 0
+            children [
+              Shape {
+                appearance USE METAL_CHROME
+                geometry Box {
+                  size 0.001 0.004 0.052
+                }
+              }
+            ]
+          }
+          Pose {
+            translation 0 0 -0.020
+            children [
+              Shape {
+                appearance USE METAL_CHROME
+                geometry Box {
+                  size 0.022 0.022 0.006
+                }
+              }
+            ]
+          }
+        ]
+      }
+
+      # ============================================================
+      # 5. HỘP ĐIỀU KHIỂN KÍN CHỐNG NƯỚC (WEATHERPROOF ENCLOSURE)
+      # ============================================================
+      Pose {
+        translation -0.012 0 0.046
+        children [
+          Shape {
+            appearance DEF MATTE_CASE PBRAppearance {
+              baseColor 0.12 0.12 0.13
+              roughness 0.65
+              metalness 0.1
+            }
+            geometry Box {
+              size 0.020 0.038 0.032
+            }
+          }
+          Pose {
+            translation -0.0102 0 0
+            children [
+              Shape {
+                appearance USE ALU_BLACK
+                geometry Box {
+                  size 0.001 0.036 0.030
+                }
+              }
+            ]
+          }
+          Pose {
+            translation 0 0.013 0.019
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0.95 0.85 0.10
+                  roughness 0.4
+                  metalness 0.1
+                }
+                geometry Cylinder {
+                  height 0.004
+                  radius 0.0035
+                }
+              }
+              Pose {
+                translation 0 0 0.003
+                children [
+                  Shape {
+                    appearance DEF ESTOP_RED PBRAppearance {
+                      baseColor 0.90 0.08 0.08
+                      roughness 0.25
+                      metalness 0.05
+                    }
+                    geometry Cylinder {
+                      height 0.004
+                      radius 0.005
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+          Pose {
+            translation 0 -0.010 0.017
+            children [
+              Shape {
+                appearance DEF LED_GREEN PBRAppearance {
+                  baseColor 0.1 0.95 0.2
+                  emissiveColor 0.1 0.95 0.2
+                  emissiveIntensity 2.2
+                }
+                geometry Sphere {
+                  radius 0.002
+                }
+              }
+            ]
+          }
+          Pose {
+            translation 0 -0.010 0.011
+            children [
+              Shape {
+                appearance DEF LED_YELLOW PBRAppearance {
+                  baseColor 0.95 0.75 0.1
+                  emissiveColor 0.95 0.75 0.1
+                  emissiveIntensity 1.8
+                }
+                geometry Sphere {
+                  radius 0.002
+                }
+              }
+            ]
+          }
+          Pose {
+            translation 0.007 0.011 0.008
+            rotation 0 1 0 0.35
+            children [
+              Shape {
+                appearance USE ALU_BLACK
+                geometry Cylinder {
+                  height 0.024
+                  radius 0.0028
+                }
+              }
+            ]
+          }
+          Pose {
+            translation 0.007 -0.011 0.008
+            rotation 0 1 0 0.35
+            children [
+              Shape {
+                appearance USE ALU_BLACK
+                geometry Cylinder {
+                  height 0.024
+                  radius 0.0028
+                }
+              }
+            ]
+          }
+        ]
+      }
+
+      # ============================================================
+      # 6. CỤM CAMERA QUAN SÁT & VÒNG ĐÈN LED RING LIGHT TRÊN ĐỈNH CỘT
+      # ============================================================
+      Pose {
+        translation 0.018 0 0.076
+        children [
+          Shape {
+            appearance USE METAL_CHROME
+            geometry Box {
+              size 0.012 0.018 0.005
+            }
+          }
+          Pose {
+            translation 0.007 0 0
+            children [
+              Shape {
+                appearance USE MATTE_CASE
+                geometry Box {
+                  size 0.011 0.020 0.020
+                }
+              }
+              Pose {
+                translation 0.006 0 0
+                rotation 0 1 0 1.5708
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                      baseColor 0.05 0.08 0.15
+                      roughness 0.08
+                      metalness 0.9
+                    }
+                    geometry Cylinder {
+                      height 0.004
+                      radius 0.0055
+                    }
+                  }
+                ]
+              }
+              Pose {
+                translation 0.006 0 0
+                rotation 0 1 0 1.5708
+                children [
+                  Shape {
+                    appearance DEF RING_LIGHT PBRAppearance {
+                      baseColor 0.98 0.98 0.98
+                      emissiveColor 1.0 0.98 0.92
+                      emissiveIntensity 3.0
+                    }
+                    geometry Cylinder {
+                      height 0.003
+                      radius 0.0095
+                    }
+                  }
+                  Shape {
+                    appearance USE MATTE_CASE
+                    geometry Cylinder {
+                      height 0.0035
+                      radius 0.0060
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+
+          Camera {
+            translation 0.015 0 0
+            rotation 0 0 1 0
+            name "camera"
+            fieldOfView 0.95
+            width IS camera_width
+            height IS camera_height
+            near 0.01
+          }
+
+          SpotLight {
+            attenuation 1 0 0.08
+            beamWidth 0.75
+            cutOffAngle 1.05
+            direction 1 0 0
+            intensity 1.8
+            location 0.017 0 0
+          }
+        ]
+      }
+
+      # ============================================================
+      # 7. CẢM BIẾN QUÁN TÍNH IMU (INERTIAL UNIT)
+      # ============================================================
+      InertialUnit {
+        translation 0 0 0.024
+        name "inertial unit"
+      }
+
+      # ============================================================
+      # 8. CỤM CẢM BIẾN BÁM LINE 3 MẮT (CHỈNH CHUẨN THEO E-PUCK)
+      # ============================================================
+      # SENSOR_TO_AXLE = 0.035m, khoảng cách ngang ±0.01m, cao độ 0.0033m
+      # lookupTable đồng nhất 100% với E-puckGroundSensors:
+      # [0 1000 0.002, 0.016 300 0.004]
+      DistanceSensor {
+        translation 0.035 0.010 0.0033
+        rotation 0 1 0 1.570796
+        name "gs0"
+        lookupTable [
+          0 1000 0.002
+          0.016 300 0.004
+        ]
+        type "infra-red"
+      }
+      DistanceSensor {
+        translation 0.035 0 0.0033
+        rotation 0 1 0 1.570796
+        name "gs1"
+        lookupTable [
+          0 1000 0.002
+          0.016 300 0.004
+        ]
+        type "infra-red"
+      }
+      DistanceSensor {
+        translation 0.035 -0.010 0.0033
+        rotation 0 1 0 1.570796
+        name "gs2"
+        lookupTable [
+          0 1000 0.002
+          0.016 300 0.004
+        ]
+        type "infra-red"
+      }
+
+      # ============================================================
+      # 9. BÁNH TỰ LỰA CÂN BẰNG PHÍA SAU (CASTER WHEEL)
+      # ============================================================
+      Pose {
+        translation -0.038 0 0.007
+        children [
+          Shape {
+            appearance USE METAL_CHROME
+            geometry Sphere {
+              radius 0.005
+            }
+          }
+        ]
+      }
+
+      # ============================================================
+      # 10. BÁNH XE CHỦ ĐỘNG VI SAI TRÁI (LEFT WHEEL MOTOR & SENSOR)
+      # ============================================================
+      # AXLE_LENGTH = 0.052m -> y = +0.026m, WHEEL_RADIUS = 0.0205m -> z = 0.0205m
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0 1 0
+          anchor 0 0.026 0.0205
+        }
+        device [
+          RotationalMotor {
+            name "left wheel motor"
+            maxVelocity 20
+            maxTorque 1.5
+          }
+          PositionSensor {
+            name "left wheel sensor"
+          }
+        ]
+        endPoint Solid {
+          name "left wheel"
+          translation 0 0.026 0.0205
+          rotation 1 0 0 1.5708
+          children [
+            Shape {
+              appearance USE TIRE_RUBBER
+              geometry Cylinder {
+                height 0.008
+                radius 0.0205
+              }
+            }
+            Shape {
+              appearance USE WHEEL_RIM
+              geometry Cylinder {
+                height 0.009
+                radius 0.0135
+              }
+            }
+            Shape {
+              appearance USE METAL_CHROME
+              geometry Cylinder {
+                height 0.011
+                radius 0.004
+              }
+            }
+          ]
+          boundingObject Cylinder {
+            height 0.008
+            radius 0.0205
+          }
+          physics Physics {
+            density -1
+            mass 0.010
+          }
+        }
+      }
+
+      # ============================================================
+      # 11. BÁNH XE CHỦ ĐỘNG VI SAI PHẢI (RIGHT WHEEL MOTOR & SENSOR)
+      # ============================================================
+      # AXLE_LENGTH = 0.052m -> y = -0.026m, WHEEL_RADIUS = 0.0205m -> z = 0.0205m
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0 1 0
+          anchor 0 -0.026 0.0205
+        }
+        device [
+          RotationalMotor {
+            name "right wheel motor"
+            maxVelocity 20
+            maxTorque 1.5
+          }
+          PositionSensor {
+            name "right wheel sensor"
+          }
+        ]
+        endPoint Solid {
+          name "right wheel"
+          translation 0 -0.026 0.0205
+          rotation 1 0 0 1.5708
+          children [
+            Shape {
+              appearance USE TIRE_RUBBER
+              geometry Cylinder {
+                height 0.008
+                radius 0.0205
+              }
+            }
+            Shape {
+              appearance USE WHEEL_RIM
+              geometry Cylinder {
+                height 0.009
+                radius 0.0135
+              }
+            }
+            Shape {
+              appearance USE METAL_CHROME
+              geometry Cylinder {
+                height 0.011
+                radius 0.004
+              }
+            }
+          ]
+          boundingObject Cylinder {
+            height 0.008
+            radius 0.0205
+          }
+          physics Physics {
+            density -1
+            mass 0.010
+          }
+        }
+      }
+    ]
+
+    # ============================================================
+    # VẬT LÝ KHUNG XE VÀ TRỌNG TÂM CÂN BẰNG TỐI ƯU NHẸ
+    # ============================================================
+    boundingObject Group {
+      children [
+        Pose {
+          translation 0 0 0.024
+          children [
+            Box {
+              size 0.098 0.056 0.022
+            }
+          ]
+        }
+        Pose {
+          translation -0.038 0 0.005
+          children [
+            Sphere {
+              radius 0.005
+            }
+          ]
+        }
+      ]
+    }
+    physics Physics {
+      density -1
+      mass 0.18
+      centerOfMass [
+        -0.005 0 0.016
+      ]
+      inertiaMatrix [
+        0.00015 0.00020 0.00025
+        0 0 0
+      ]
+    }
+  }
+}

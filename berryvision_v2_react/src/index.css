@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body, #root { height: 100%; width: 100%; overflow-x: hidden; background-color: #05070a; font-family: 'Inter', sans-serif; }
+
+@keyframes scanLineAnim {
+  0% {
+    top: 0%;
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0.8;
+  }
+}
+
+.animate-scan {
+  animation: scanLineAnim 3s linear infinite;
+}

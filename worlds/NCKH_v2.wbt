@@ -1,0 +1,1124 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "../protos/BerryBot.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.25754076472732534 -0.0611264587747204 0.964332054087868 3.656509432530036
+  position 1.0642164623410761 -0.4980347045884298 0.24502875479325978
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+DirectionalLight {
+  ambientIntensity 0.8
+  direction 0 0.2 -1
+  intensity 1.6
+}
+PointLight {
+  attenuation 1 0 0.05
+  intensity 1.4
+  location 0 0 2.2
+}
+DEF ARENA RectangleArena {
+  floorSize 4 4
+  floorAppearance PBRAppearance {
+    baseColor 0.88 0.9 0.88
+    roughness 0.5
+    metalness 0.05
+  }
+}
+BerryBot {
+  translation 0.7 -0.9 0
+  rotation 0 0 1 1.5708
+  controllerArgs [
+    ""
+  ]
+}
+DEF GH_WALL_RIGHT Solid {
+  translation 1.25 0 0.4
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.72 0.88 0.96
+        transparency 0.5
+        roughness 0.1
+        metalness 0.2
+      }
+      geometry Box {
+        size 0.02 3.06 0.68
+      }
+    }
+  ]
+  name "gh_wall_right"
+}
+DEF GH_WALL_LEFT Solid {
+  translation -1.25 0 0.4
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.72 0.88 0.96
+        transparency 0.5
+        roughness 0.1
+        metalness 0.2
+      }
+      geometry Box {
+        size 0.02 3.06 0.68
+      }
+    }
+  ]
+  name "gh_wall_left"
+}
+DEF GH_WALL_NORTH Solid {
+  translation 0 1.53 0.4
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.72 0.88 0.96
+        transparency 0.5
+        roughness 0.1
+        metalness 0.2
+      }
+      geometry Box {
+        size 2.48 0.02 0.68
+      }
+    }
+  ]
+  name "gh_wall_north"
+}
+DEF GH_WALL_SOUTH Solid {
+  translation 0 -1.53 0.4
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.72 0.88 0.96
+        transparency 0.5
+        roughness 0.1
+        metalness 0.2
+      }
+      geometry Box {
+        size 2.48 0.02 0.68
+      }
+    }
+  ]
+  name "gh_wall_south"
+}
+DEF GH_ROOF_RIGHT Solid {
+  translation 0.625 0 0.945
+  rotation 0 1 0 0.317
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.72 0.88 0.96
+        transparency 0.5
+        roughness 0.1
+        metalness 0.2
+      }
+      geometry Box {
+        size 1.32 3.06 0.015
+      }
+    }
+  ]
+  name "gh_roof_right"
+}
+DEF GH_ROOF_LEFT Solid {
+  translation -0.625 0 0.945
+  rotation 0 1 0 -0.317
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.72 0.88 0.96
+        transparency 0.5
+        roughness 0.1
+        metalness 0.2
+      }
+      geometry Box {
+        size 1.32 3.06 0.015
+      }
+    }
+  ]
+  name "gh_roof_left"
+}
+DEF GH_RIDGE_BEAM Solid {
+  translation 0 0 1.15
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.95 0.96 0.97
+        roughness 0.2
+        metalness 0.5
+      }
+      geometry Box {
+        size 0.05 3.1 0.05
+      }
+    }
+  ]
+  name "gh_ridge_beam"
+}
+DEF GH_EAVE_RIGHT Solid {
+  translation 1.25 0 0.74
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.95 0.96 0.97
+        roughness 0.2
+        metalness 0.5
+      }
+      geometry Box {
+        size 0.05 3.1 0.05
+      }
+    }
+  ]
+  name "gh_eave_right"
+}
+DEF GH_EAVE_LEFT Solid {
+  translation -1.25 0 0.74
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.95 0.96 0.97
+        roughness 0.2
+        metalness 0.5
+      }
+      geometry Box {
+        size 0.05 3.1 0.05
+      }
+    }
+  ]
+  name "gh_eave_left"
+}
+DEF GH_POST_1 Solid {
+  translation 1.25 1.53 0.37
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.95 0.96 0.97
+        roughness 0.2
+        metalness 0.5
+      }
+      geometry Box {
+        size 0.05 0.05 0.74
+      }
+    }
+  ]
+  name "gh_post_1"
+}
+DEF GH_POST_2 Solid {
+  translation 1.25 0 0.37
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.95 0.96 0.97
+        roughness 0.2
+        metalness 0.5
+      }
+      geometry Box {
+        size 0.05 0.05 0.74
+      }
+    }
+  ]
+  name "gh_post_2"
+}
+DEF GH_POST_3 Solid {
+  translation 1.25 -1.53 0.37
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.95 0.96 0.97
+        roughness 0.2
+        metalness 0.5
+      }
+      geometry Box {
+        size 0.05 0.05 0.74
+      }
+    }
+  ]
+  name "gh_post_3"
+}
+DEF GH_POST_4 Solid {
+  translation -1.25 1.53 0.37
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.95 0.96 0.97
+        roughness 0.2
+        metalness 0.5
+      }
+      geometry Box {
+        size 0.05 0.05 0.74
+      }
+    }
+  ]
+  name "gh_post_4"
+}
+DEF GH_POST_5 Solid {
+  translation -1.25 0 0.37
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.95 0.96 0.97
+        roughness 0.2
+        metalness 0.5
+      }
+      geometry Box {
+        size 0.05 0.05 0.74
+      }
+    }
+  ]
+  name "gh_post_5"
+}
+DEF GH_POST_6 Solid {
+  translation -1.25 -1.53 0.37
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.95 0.96 0.97
+        roughness 0.2
+        metalness 0.5
+      }
+      geometry Box {
+        size 0.05 0.05 0.74
+      }
+    }
+  ]
+  name "gh_post_6"
+}
+DEF GH_LIGHT_LEFT Solid {
+  translation -0.35 0 0.85
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.95 0.95 0.95
+        roughness 0.2
+        metalness 0.4
+        emissiveColor 1 0.96 0.88
+        emissiveIntensity 1.2
+      }
+      geometry Box {
+        size 0.06 1.62 0.02
+      }
+    }
+  ]
+  name "gh_light_left"
+}
+DEF GH_LIGHT_RIGHT Solid {
+  translation 0.35 0 0.85
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.95 0.95 0.95
+        roughness 0.2
+        metalness 0.4
+        emissiveColor 1 0.96 0.88
+        emissiveIntensity 1.2
+      }
+      geometry Box {
+        size 0.06 1.62 0.02
+      }
+    }
+  ]
+  name "gh_light_right"
+}
+DEF BED_LEFT Solid {
+  translation -0.35 0 0.04
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.94 0.95 0.96
+        roughness 0.25
+        metalness 0.1
+      }
+      geometry Box {
+        size 0.2 1.62 0.08
+      }
+    }
+  ]
+  name "bed_left"
+}
+DEF BED_LEFT_CANOPY Solid {
+  translation -0.35 0 0.085
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.14 0.44 0.16
+        roughness 0.9
+        metalness 0
+      }
+      geometry Box {
+        size 0.18 1.6 0.015
+      }
+    }
+  ]
+  name "bed_left_canopy"
+}
+DEF BED_RIGHT Solid {
+  translation 0.35 0 0.04
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.94 0.95 0.96
+        roughness 0.25
+        metalness 0.1
+      }
+      geometry Box {
+        size 0.2 1.62 0.08
+      }
+    }
+  ]
+  name "bed_right"
+}
+DEF BED_RIGHT_CANOPY Solid {
+  translation 0.35 0 0.085
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.14 0.44 0.16
+        roughness 0.9
+        metalness 0
+      }
+      geometry Box {
+        size 0.18 1.6 0.015
+      }
+    }
+  ]
+  name "bed_right_canopy"
+}
+DEF LINE_LEFT Solid {
+  translation -0.7 0 0.001
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.05 0.05 0.05
+        roughness 0.9
+        metalness 0
+      }
+      geometry Plane {
+        size 0.03 1.8
+      }
+    }
+  ]
+  name "line_left"
+}
+DEF LINE_MID Solid {
+  translation 0 0 0.001
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.05 0.05 0.05
+        roughness 0.9
+        metalness 0
+      }
+      geometry Plane {
+        size 0.03 1.8
+      }
+    }
+  ]
+  name "line_mid"
+}
+DEF LINE_RIGHT Solid {
+  translation 0.7 0 0.001
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.05 0.05 0.05
+        roughness 0.9
+        metalness 0
+      }
+      geometry Plane {
+        size 0.03 1.8
+      }
+    }
+  ]
+  name "line_right"
+}
+DEF LINE_TOP Solid {
+  translation 0 0.9 0.001
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.05 0.05 0.05
+        roughness 0.9
+        metalness 0
+      }
+      geometry Plane {
+        size 1.8 0.03
+      }
+    }
+  ]
+  name "line_top"
+}
+DEF LINE_BOT Solid {
+  translation 0 -0.9 0.001
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.05 0.05 0.05
+        roughness 0.9
+        metalness 0
+      }
+      geometry Plane {
+        size 1.8 0.03
+      }
+    }
+  ]
+  name "line_bot"
+}
+DEF RED_R_0 Solid {
+  translation 0.7 -0.5 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.95 0.1 0.1
+        roughness 0.8
+        metalness 0
+        emissiveColor 0.6 0 0
+        emissiveIntensity 0.3
+      }
+      geometry Plane {
+        size 0.06 0.06
+      }
+    }
+  ]
+  name "red_r_0"
+}
+DEF RED_R_1 Solid {
+  translation 0.7 0 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.95 0.1 0.1
+        roughness 0.8
+        metalness 0
+        emissiveColor 0.6 0 0
+        emissiveIntensity 0.3
+      }
+      geometry Plane {
+        size 0.06 0.06
+      }
+    }
+  ]
+  name "red_r_1"
+}
+DEF RED_R_2 Solid {
+  translation 0.7 0.5 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.95 0.1 0.1
+        roughness 0.8
+        metalness 0
+        emissiveColor 0.6 0 0
+        emissiveIntensity 0.3
+      }
+      geometry Plane {
+        size 0.06 0.06
+      }
+    }
+  ]
+  name "red_r_2"
+}
+DEF RED_M_0 Solid {
+  translation 0 -0.5 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.95 0.1 0.1
+        roughness 0.8
+        metalness 0
+        emissiveColor 0.6 0 0
+        emissiveIntensity 0.3
+      }
+      geometry Plane {
+        size 0.06 0.06
+      }
+    }
+  ]
+  name "red_m_0"
+}
+DEF RED_M_1 Solid {
+  translation 0 0 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.95 0.1 0.1
+        roughness 0.8
+        metalness 0
+        emissiveColor 0.6 0 0
+        emissiveIntensity 0.3
+      }
+      geometry Plane {
+        size 0.06 0.06
+      }
+    }
+  ]
+  name "red_m_1"
+}
+DEF RED_M_2 Solid {
+  translation 0 0.5 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.95 0.1 0.1
+        roughness 0.8
+        metalness 0
+        emissiveColor 0.6 0 0
+        emissiveIntensity 0.3
+      }
+      geometry Plane {
+        size 0.06 0.06
+      }
+    }
+  ]
+  name "red_m_2"
+}
+DEF RED_L_0 Solid {
+  translation -0.7 -0.5 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.95 0.1 0.1
+        roughness 0.8
+        metalness 0
+        emissiveColor 0.6 0 0
+        emissiveIntensity 0.3
+      }
+      geometry Plane {
+        size 0.06 0.06
+      }
+    }
+  ]
+  name "red_l_0"
+}
+DEF RED_L_1 Solid {
+  translation -0.7 0 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.95 0.1 0.1
+        roughness 0.8
+        metalness 0
+        emissiveColor 0.6 0 0
+        emissiveIntensity 0.3
+      }
+      geometry Plane {
+        size 0.06 0.06
+      }
+    }
+  ]
+  name "red_l_1"
+}
+DEF RED_L_2 Solid {
+  translation -0.7 0.5 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.95 0.1 0.1
+        roughness 0.8
+        metalness 0
+        emissiveColor 0.6 0 0
+        emissiveIntensity 0.3
+      }
+      geometry Plane {
+        size 0.06 0.06
+      }
+    }
+  ]
+  name "red_l_2"
+}
+DEF BLUE_1 Solid {
+  translation 0.7 0.9 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.1 0.45 0.95
+        roughness 0.8
+        metalness 0
+        emissiveColor 0 0.2 0.7
+        emissiveIntensity 0.3
+      }
+      geometry Plane {
+        size 0.08 0.08
+      }
+    }
+  ]
+  name "blue_1"
+}
+DEF BLUE_2 Solid {
+  translation 0 0.9 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.1 0.45 0.95
+        roughness 0.8
+        metalness 0
+        emissiveColor 0 0.2 0.7
+        emissiveIntensity 0.3
+      }
+      geometry Plane {
+        size 0.08 0.08
+      }
+    }
+  ]
+  name "blue_2"
+}
+DEF BLUE_3 Solid {
+  translation 0 -0.9 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.1 0.45 0.95
+        roughness 0.8
+        metalness 0
+        emissiveColor 0 0.2 0.7
+        emissiveIntensity 0.3
+      }
+      geometry Plane {
+        size 0.08 0.08
+      }
+    }
+  ]
+  name "blue_3"
+}
+DEF BLUE_4 Solid {
+  translation -0.7 -0.9 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.1 0.45 0.95
+        roughness 0.8
+        metalness 0
+        emissiveColor 0 0.2 0.7
+        emissiveIntensity 0.3
+      }
+      geometry Plane {
+        size 0.08 0.08
+      }
+    }
+  ]
+  name "blue_4"
+}
+DEF BLUE_5 Solid {
+  translation -0.7 0.9 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.1 0.45 0.95
+        roughness 0.8
+        metalness 0
+        emissiveColor 0 0.2 0.7
+        emissiveIntensity 0.3
+      }
+      geometry Plane {
+        size 0.08 0.08
+      }
+    }
+  ]
+  name "blue_5"
+}
+DEF BLUE_HOME Solid {
+  translation 0.7 -0.9 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.1 0.45 0.95
+        roughness 0.8
+        metalness 0
+        emissiveColor 0 0.2 0.7
+        emissiveIntensity 0.3
+      }
+      geometry Plane {
+        size 0.08 0.08
+      }
+    }
+    Pose {
+      translation 0 -0.06 0.015
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.2 0.22 0.25
+            roughness 0.3
+            metalness 0.8
+          }
+          geometry Box {
+            size 0.09 0.04 0.03
+          }
+        }
+        Pose {
+          translation 0 0.018 0.01
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.1 0.9 0.2
+                emissiveColor 0.1 0.9 0.2
+                emissiveIntensity 1.2
+              }
+              geometry Sphere {
+                radius 0.003
+              }
+            }
+          ]
+        }
+      ]
+    }
+    Pose {
+      translation 0.012 0 0.002
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.9 0.6 0.2
+            roughness 0.2
+            metalness 0.95
+          }
+          geometry Box {
+            size 0.008 0.03 0.003
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.012 0 0.002
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.9 0.6 0.2
+            roughness 0.2
+            metalness 0.95
+          }
+          geometry Box {
+            size 0.008 0.03 0.003
+          }
+        }
+      ]
+    }
+  ]
+  name "blue_home"
+}
+DEF STRAW_R0 Solid {
+  translation 0.49 -0.5 0.065
+  rotation 0.5773502691896258 0.5773502691896258 0.5773502691896258 2.0944
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/strawberry_foreign_1.jpg"
+          ]
+        }
+        roughness 0.3
+        metalness 0
+        emissiveColorMap ImageTexture {
+          url [
+            "textures/strawberry_foreign_1.jpg"
+          ]
+        }
+        emissiveIntensity 0.55
+      }
+      geometry Plane {
+        size 0.25 0.13
+      }
+    }
+  ]
+  name "straw_r0"
+}
+DEF STRAW_R1 Solid {
+  translation 0.49 0 0.065
+  rotation 0.5773502691896258 0.5773502691896258 0.5773502691896258 2.0944
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/disease_dom_trang.jpg"
+          ]
+        }
+        roughness 0.3
+        metalness 0
+        emissiveColorMap ImageTexture {
+          url [
+            "textures/disease_dom_trang.jpg"
+          ]
+        }
+        emissiveIntensity 0.55
+      }
+      geometry Plane {
+        size 0.25 0.13
+      }
+    }
+  ]
+  name "straw_r1"
+}
+DEF STRAW_R2 Solid {
+  translation 0.49 0.5 0.065
+  rotation 0.5773502691896258 0.5773502691896258 0.5773502691896258 2.0944
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/strawberry_foreign_2.jpg"
+          ]
+        }
+        roughness 0.3
+        metalness 0
+        emissiveColorMap ImageTexture {
+          url [
+            "textures/strawberry_foreign_2.jpg"
+          ]
+        }
+        emissiveIntensity 0.55
+      }
+      geometry Plane {
+        size 0.25 0.13
+      }
+    }
+  ]
+  name "straw_r2"
+}
+DEF STRAW_MR0 Solid {
+  translation 0.21 -0.5 0.065
+  rotation 0.5773502691896258 -0.5773502691896258 -0.5773502691896258 2.0944
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/strawberry_foreign_1.jpg"
+          ]
+        }
+        roughness 0.3
+        metalness 0
+        emissiveColorMap ImageTexture {
+          url [
+            "textures/strawberry_foreign_1.jpg"
+          ]
+        }
+        emissiveIntensity 0.55
+      }
+      geometry Plane {
+        size 0.25 0.13
+      }
+    }
+  ]
+  name "straw_mr0"
+}
+DEF STRAW_MR1 Solid {
+  translation 0.21 0 0.065
+  rotation 0.5773502691896258 -0.5773502691896258 -0.5773502691896258 2.0944
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/strawberry_foreign_2.jpg"
+          ]
+        }
+        roughness 0.3
+        metalness 0
+        emissiveColorMap ImageTexture {
+          url [
+            "textures/strawberry_foreign_2.jpg"
+          ]
+        }
+        emissiveIntensity 0.55
+      }
+      geometry Plane {
+        size 0.25 0.13
+      }
+    }
+  ]
+  name "straw_mr1"
+}
+DEF STRAW_MR2 Solid {
+  translation 0.21 0.5 0.065
+  rotation 0.5773502691896258 -0.5773502691896258 -0.5773502691896258 2.0944
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/disease_vang_ua.jpg"
+          ]
+        }
+        roughness 0.3
+        metalness 0
+        emissiveColorMap ImageTexture {
+          url [
+            "textures/disease_vang_ua.jpg"
+          ]
+        }
+        emissiveIntensity 0.55
+      }
+      geometry Plane {
+        size 0.25 0.13
+      }
+    }
+  ]
+  name "straw_mr2"
+}
+DEF STRAW_ML0 Solid {
+  translation -0.21 -0.5 0.065
+  rotation 0.5773502691896258 0.5773502691896258 0.5773502691896258 2.0944
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/disease_kho_heo.jpg"
+          ]
+        }
+        roughness 0.3
+        metalness 0
+        emissiveColorMap ImageTexture {
+          url [
+            "textures/disease_kho_heo.jpg"
+          ]
+        }
+        emissiveIntensity 0.55
+      }
+      geometry Plane {
+        size 0.25 0.13
+      }
+    }
+  ]
+  name "straw_ml0"
+}
+DEF STRAW_ML1 Solid {
+  translation -0.21 0 0.065
+  rotation 0.5773502691896258 0.5773502691896258 0.5773502691896258 2.0944
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/strawberry_foreign_1.jpg"
+          ]
+        }
+        roughness 0.3
+        metalness 0
+        emissiveColorMap ImageTexture {
+          url [
+            "textures/strawberry_foreign_1.jpg"
+          ]
+        }
+        emissiveIntensity 0.55
+      }
+      geometry Plane {
+        size 0.25 0.13
+      }
+    }
+  ]
+  name "straw_ml1"
+}
+DEF STRAW_ML2 Solid {
+  translation -0.21 0.5 0.065
+  rotation 0.5773502691896258 0.5773502691896258 0.5773502691896258 2.0944
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/strawberry_foreign_2.jpg"
+          ]
+        }
+        roughness 0.3
+        metalness 0
+        emissiveColorMap ImageTexture {
+          url [
+            "textures/strawberry_foreign_2.jpg"
+          ]
+        }
+        emissiveIntensity 0.55
+      }
+      geometry Plane {
+        size 0.25 0.13
+      }
+    }
+  ]
+  name "straw_ml2"
+}
+DEF STRAW_L0 Solid {
+  translation -0.49 -0.5 0.065
+  rotation 0.5773502691896258 -0.5773502691896258 -0.5773502691896258 2.0944
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/strawberry_foreign_1.jpg"
+          ]
+        }
+        roughness 0.3
+        metalness 0
+        emissiveColorMap ImageTexture {
+          url [
+            "textures/strawberry_foreign_1.jpg"
+          ]
+        }
+        emissiveIntensity 0.55
+      }
+      geometry Plane {
+        size 0.25 0.13
+      }
+    }
+  ]
+  name "straw_l0"
+}
+DEF STRAW_L1 Solid {
+  translation -0.49 0 0.065
+  rotation 0.5773502691896258 -0.5773502691896258 -0.5773502691896258 2.0944
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/disease_chay_la.jpg"
+          ]
+        }
+        roughness 0.3
+        metalness 0
+        emissiveColorMap ImageTexture {
+          url [
+            "textures/disease_chay_la.jpg"
+          ]
+        }
+        emissiveIntensity 0.55
+      }
+      geometry Plane {
+        size 0.25 0.13
+      }
+    }
+  ]
+  name "straw_l1"
+}
+DEF STRAW_L2 Solid {
+  translation -0.49 0.5 0.065
+  rotation 0.5773502691896258 -0.5773502691896258 -0.5773502691896258 2.0944
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/strawberry_foreign_2.jpg"
+          ]
+        }
+        roughness 0.3
+        metalness 0
+        emissiveColorMap ImageTexture {
+          url [
+            "textures/strawberry_foreign_2.jpg"
+          ]
+        }
+        emissiveIntensity 0.55
+      }
+      geometry Plane {
+        size 0.25 0.13
+      }
+    }
+  ]
+  name "straw_l2"
+}

@@ -1,0 +1,14 @@
+Khi làm việc với các dự án Webots trên máy tính này, bạn (AI) TUYỆT ĐỐI KHÔNG được:
+
+1. Xóa hoặc ghi đè file .wbt (world file), file controller, hoặc file cấu hình robot (.proto, .urdf) mà không hỏi xác nhận trước.
+2. Thay đổi các thông số vật lý quan trọng của robot/thế giới (khối lượng, ma sát, trọng lực, giới hạn khớp...) mà không giải thích rõ lý do và xin xác nhận.
+3. Chạy mô phỏng ở chế độ vô hạn (fast mode / no-pause) nếu chưa biết trước hành vi robot có an toàn không (tránh vòng lặp vô hạn, crash Webots, hoặc tiêu tốn tài nguyên máy).
+4. Cài đặt, gỡ, hoặc nâng cấp Webots, driver, hoặc các gói phụ thuộc (Python, C++, ROS...) mà không thông báo trước.
+5. Thay đổi cấu hình hệ thống ngoài phạm vi thư mục dự án (biến môi trường toàn cục, PATH, registry...).
+6. Commit hoặc push code lên git/remote repository mà không được yêu cầu rõ ràng.
+7. Tự ý chạy các file controller chưa được kiểm tra (đặc biệt file tải từ nguồn không rõ) mà không xem qua nội dung trước.
+8. Gửi dữ liệu dự án (world, controller, log) ra ngoài máy/lên mạng nếu không được yêu cầu.
+9. Xóa log, dữ liệu huấn luyện, hoặc kết quả mô phỏng trước đó mà chưa sao lưu.
+10. Thực hiện các thay đổi hàng loạt (bulk edit) trên nhiều file dự án cùng lúc mà không liệt kê trước các file sẽ bị ảnh hưởng.
+
+Trước khi thực hiện bất kỳ hành động nào có thể ảnh hưởng không thể hoàn tác (xóa, ghi đè, cài đặt, thay đổi cấu hình hệ thống), hãy tóm tắt hành động dự định và chờ xác nhận từ tôi.

@@ -1,0 +1,626 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/robots/gctronic/e-puck/protos/E-puck.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/robots/gctronic/e-puck/protos/E-puckGroundSensors.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/appearances/protos/Parquetry.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.16353263658151046 0.19536439000469963 -0.9670004301399204 1.5351990715878905
+  position -0.9723808047123469 -0.34478033360324045 0.16107283046817777
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+DEF ARENA RectangleArena {
+  floorSize 4 4
+  floorAppearance Parquetry {
+    type "light strip"
+    textureTransform TextureTransform {
+      scale 4 4
+    }
+  }
+}
+E-puck {
+  hidden position_0_0 1385.4185284046266
+  hidden position_0_1 1330.4370955950926
+  hidden rotation_1 0 1 0 3.1177608251175886
+  hidden rotation_2 0 -1 0 1.5981895269797186
+  translation -0.8999778117419203 -0.8998991556115606 -6.498058964637607e-05
+  rotation -0.00046745140091631 0.00046727635078930145 0.9999997815709761 1.5708170457974797
+  controller "1"
+  controllerArgs [
+    ""
+  ]
+  camera_width 640
+  camera_height 480
+  groundSensorsSlot [
+    E-puckGroundSensors {
+    }
+  ]
+}
+DEF LINE_V0 Solid {
+  translation -0.9 0 0.001
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 0.03 1.8
+      }
+    }
+  ]
+  name "line_v0"
+}
+DEF LINE_V1 Solid {
+  translation -0.3 0 0.001
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 0.03 1.8
+      }
+    }
+  ]
+  name "line_v1"
+}
+DEF LINE_V2 Solid {
+  translation 0.3 0 0.001
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 0.03 1.8
+      }
+    }
+  ]
+  name "line_v2"
+}
+DEF LINE_V3 Solid {
+  translation 0.9 0 0.001
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 0.03 1.8
+      }
+    }
+  ]
+  name "line_v3"
+}
+DEF LINE_H0 Solid {
+  translation 0 -0.9 0.001
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 1.8 0.03
+      }
+    }
+  ]
+  name "line_h0"
+}
+DEF LINE_H1 Solid {
+  translation 0 -0.3 0.001
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 1.8 0.03
+      }
+    }
+  ]
+  name "line_h1"
+}
+DEF LINE_H2 Solid {
+  translation 0 0.3 0.001
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 1.8 0.03
+      }
+    }
+  ]
+  name "line_h2"
+}
+DEF LINE_H3 Solid {
+  translation 0 0.9 0.001
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 1.8 0.03
+      }
+    }
+  ]
+  name "line_h3"
+}
+DEF STRAWBERRY_0_0 Solid {
+  translation -0.6 -0.6 0.001
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/strawberry.jpg"
+          ]
+        }
+        roughness 0.6
+        metalness 0
+      }
+      geometry Plane {
+        size 0.35 0.35
+      }
+    }
+  ]
+  name "strawberry_0_0"
+}
+DEF STRAWBERRY_1_0 Solid {
+  translation 0 -0.6 0.001
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/strawberry.jpg"
+          ]
+        }
+        roughness 0.6
+        metalness 0
+      }
+      geometry Plane {
+        size 0.35 0.35
+      }
+    }
+  ]
+  name "strawberry_1_0"
+}
+DEF STRAWBERRY_2_0 Solid {
+  translation 0.6 -0.6 0.001
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/strawberry.jpg"
+          ]
+        }
+        roughness 0.6
+        metalness 0
+      }
+      geometry Plane {
+        size 0.35 0.35
+      }
+    }
+  ]
+  name "strawberry_2_0"
+}
+DEF STRAWBERRY_0_1 Solid {
+  translation -0.6 0 0.001
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/strawberry.jpg"
+          ]
+        }
+        roughness 0.6
+        metalness 0
+      }
+      geometry Plane {
+        size 0.35 0.35
+      }
+    }
+  ]
+  name "strawberry_0_1"
+}
+DEF STRAWBERRY_1_1 Solid {
+  translation 0 0 0.001
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/strawberry.jpg"
+          ]
+        }
+        roughness 0.6
+        metalness 0
+      }
+      geometry Plane {
+        size 0.35 0.35
+      }
+    }
+  ]
+  name "strawberry_1_1"
+}
+DEF STRAWBERRY_2_1 Solid {
+  translation 0.6 0 0.001
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/strawberry.jpg"
+          ]
+        }
+        roughness 0.6
+        metalness 0
+      }
+      geometry Plane {
+        size 0.35 0.35
+      }
+    }
+  ]
+  name "strawberry_2_1"
+}
+DEF STRAWBERRY_0_2 Solid {
+  translation -0.6 0.6 0.001
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/strawberry.jpg"
+          ]
+        }
+        roughness 0.6
+        metalness 0
+      }
+      geometry Plane {
+        size 0.35 0.35
+      }
+    }
+  ]
+  name "strawberry_0_2"
+}
+DEF STRAWBERRY_1_2 Solid {
+  translation 0 0.6 0.001
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/strawberry.jpg"
+          ]
+        }
+        roughness 0.6
+        metalness 0
+      }
+      geometry Plane {
+        size 0.35 0.35
+      }
+    }
+  ]
+  name "strawberry_1_2"
+}
+DEF STRAWBERRY_2_2 Solid {
+  translation 0.6 0.6 0.001
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/strawberry.jpg"
+          ]
+        }
+        roughness 0.6
+        metalness 0
+      }
+      geometry Plane {
+        size 0.35 0.35
+      }
+    }
+  ]
+  name "strawberry_2_2"
+}
+DEF RED_STOP_0_0 Solid {
+  translation -0.9 -0.6 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 0.06 0.06
+      }
+    }
+  ]
+  name "red_stop_0_0"
+}
+DEF RED_STOP_0_1 Solid {
+  translation -0.9 0 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 0.06 0.06
+      }
+    }
+  ]
+  name "red_stop_0_1"
+}
+DEF RED_STOP_0_2 Solid {
+  translation -0.9 0.6 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 0.06 0.06
+      }
+    }
+  ]
+  name "red_stop_0_2"
+}
+DEF RED_STOP_1_2 Solid {
+  translation -0.3 0.6 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 0.06 0.06
+      }
+    }
+  ]
+  name "red_stop_1_2"
+}
+DEF RED_STOP_1_1 Solid {
+  translation -0.3 0 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 0.06 0.06
+      }
+    }
+  ]
+  name "red_stop_1_1"
+}
+DEF RED_STOP_1_0 Solid {
+  translation -0.3 -0.6 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 0.06 0.06
+      }
+    }
+  ]
+  name "red_stop_1_0"
+}
+DEF RED_STOP_2_0 Solid {
+  translation 0.3 -0.6 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 0.06 0.06
+      }
+    }
+  ]
+  name "red_stop_2_0"
+}
+DEF RED_STOP_2_1 Solid {
+  translation 0.3 0 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 0.06 0.06
+      }
+    }
+  ]
+  name "red_stop_2_1"
+}
+DEF RED_STOP_2_2 Solid {
+  translation 0.3 0.6 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 0.06 0.06
+      }
+    }
+  ]
+  name "red_stop_2_2"
+}
+DEF BLUE_CORNER_1 Solid {
+  translation -0.9 0.9 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 0.3 1
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 0.08 0.08
+      }
+    }
+  ]
+  name "blue_corner_1"
+}
+DEF BLUE_CORNER_2 Solid {
+  translation -0.3 0.9 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 0.3 1
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 0.08 0.08
+      }
+    }
+  ]
+  name "blue_corner_2"
+}
+DEF BLUE_CORNER_3 Solid {
+  translation -0.3 -0.9 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 0.3 1
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 0.08 0.08
+      }
+    }
+  ]
+  name "blue_corner_3"
+}
+DEF BLUE_CORNER_4 Solid {
+  translation 0.3 -0.9 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 0.3 1
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 0.08 0.08
+      }
+    }
+  ]
+  name "blue_corner_4"
+}
+DEF BLUE_CORNER_5 Solid {
+  translation 0.3 0.9 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 0.3 1
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 0.08 0.08
+      }
+    }
+  ]
+  name "blue_corner_5"
+}
+DEF BLUE_CORNER_6 Solid {
+  translation 0.9 0.9 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 0.3 1
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 0.08 0.08
+      }
+    }
+  ]
+  name "blue_corner_6"
+}
+DEF BLUE_CORNER_7 Solid {
+  translation 0.9 -0.9 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 0.3 1
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 0.08 0.08
+      }
+    }
+  ]
+  name "blue_corner_7"
+}
+DEF BLUE_CORNER_8 Solid {
+  translation -0.9 -0.9 0.002
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 0.3 1
+        roughness 1
+        metalness 0
+      }
+      geometry Plane {
+        size 0.08 0.08
+      }
+    }
+  ]
+  name "blue_corner_8"
+}

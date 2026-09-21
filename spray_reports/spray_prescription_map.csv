@@ -1,0 +1,13 @@
+﻿tree_id,col_idx,X,Y,wing,pos_name,aisle,nhan_benh,ten_benh,do_tin_cay,bien_phap,filename
+1,1,1,1,Tây Ngoài,Luống Tây (Mặt Ngoài),Lối Tây (X=1),khoe_manh,Khỏe Mạnh,0.8956,Không cần can thiệp (Duy trì tưới tiêu),X01_Y01_20260826_07.jpg
+2,1,1,2,Tây Ngoài,Luống Tây (Mặt Ngoài),Lối Tây (X=1),chay_la,Cháy Rìa Lá,0.9508,Tỉa bỏ phần lá hỏng & phun chống cháy lá,X01_Y02_20260826_08.jpg
+3,1,1,3,Tây Ngoài,Luống Tây (Mặt Ngoài),Lối Tây (X=1),khoe_manh,Khỏe Mạnh,0.9145,Không cần can thiệp (Duy trì tưới tiêu),X01_Y03_20260826_09.jpg
+4,2,2,1,Cánh Trái,Luống Đông (Mặt Trong),Lối Giữa (X=2 Trái),khoe_manh,Khỏe Mạnh,0.9088,Không cần can thiệp (Duy trì tưới tiêu),X02_Y01_20260826_06_L.jpg
+5,2,2,2,Cánh Trái,Luống Đông (Mặt Trong),Lối Giữa (X=2 Trái),khoe_manh,Khỏe Mạnh,0.909,Không cần can thiệp (Duy trì tưới tiêu),X02_Y02_20260826_05_L.jpg
+6,2,2,3,Cánh Trái,Luống Đông (Mặt Trong),Lối Giữa (X=2 Trái),vang_ua,Lá Vàng Úa,0.9231,Bổ sung vi lượng & Đạm hòa tan qua lá,X02_Y03_20260826_04_L.jpg
+7,3,2,1,Cánh Phải,Luống Tây (Mặt Trong),Lối Giữa (X=2 Phải),kho_heo,Héo Rũ / Thối Rễ,0.9119,Phun thuốc đặc trị (Ridomil Gold) & cách ly,X02_Y01_20260826_06_R.jpg
+8,3,2,2,Cánh Phải,Luống Tây (Mặt Trong),Lối Giữa (X=2 Phải),khoe_manh,Khỏe Mạnh,0.9067,Không cần can thiệp (Duy trì tưới tiêu),X02_Y02_20260826_05_R.jpg
+9,3,2,3,Cánh Phải,Luống Tây (Mặt Trong),Lối Giữa (X=2 Phải),khoe_manh,Khỏe Mạnh,0.9146,Không cần can thiệp (Duy trì tưới tiêu),X02_Y03_20260826_04_R.jpg
+10,4,3,1,Đông Ngoài,Luống Đông (Mặt Ngoài),Lối Đông (X=3),khoe_manh,Khỏe Mạnh,0.9003,Không cần can thiệp (Duy trì tưới tiêu),X03_Y01_20260826_01.jpg
+11,4,3,2,Đông Ngoài,Luống Đông (Mặt Ngoài),Lối Đông (X=3),dom_trang,Bệnh Đốm Trắng,0.9567,Phun thuốc diệt nấm (Score 250EC / Anvil),X03_Y02_20260826_02.jpg
+12,4,3,3,Đông Ngoài,Luống Đông (Mặt Ngoài),Lối Đông (X=3),khoe_manh,Khỏe Mạnh,0.914,Không cần can thiệp (Duy trì tưới tiêu),X03_Y03_20260826_03.jpg

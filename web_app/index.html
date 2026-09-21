@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Smart Greenhouse - Giám Sát & Điều Phối Phun Thuốc Dâu Tây Ngoại Nhập</title>
+    <!-- PWA & Mobile Web App Meta -->
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/png" href="/icon-192.png">
+    <link rel="apple-touch-icon" href="/icon-192.png">
+    <meta name="theme-color" content="#070b11">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="BerryVisionAI">
+
+    <!-- Google Fonts: Be Vietnam Pro & Plus Jakarta Sans with 100% Full Vietnamese Diacritics Support -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap&subset=vietnamese,latin-ext" rel="stylesheet">
+    <!-- Three.js 3D Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="stylesheet" href="/style.css?v=2.6">
+</head>
+<body>
+
+    <!-- 1. STICKY GLASS NAVBAR -->
+    <header class="glass-navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-brand">
+                <div class="brand-icon-wrapper pulse-red">
+                    <span class="brand-icon">🍓</span>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-title">BERRY<span class="text-green">VISION</span> AI</span>
+                    <span class="brand-subtitle">Smart Greenhouse Monitoring</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="nav-links">
+                <a href="#hero" class="nav-link active">Trang Chủ</a>
+                <a href="#live-diagnostic" class="nav-link">Chẩn Đoán AI</a>
+                <a href="#spray-matrix" class="nav-link">Bản Đồ Phun 2D</a>
+                <a href="#features" class="nav-link">Tính Năng Đột Phá</a>
+                <a href="#varieties" class="nav-link">Giống Dâu Ngoại</a>
+                <a href="#testimonials" class="nav-link">Đánh Giá Thực Tế</a>
+                <a href="#pipeline" class="nav-link">Pipeline Studio</a>
+            </nav>
+
+            <!-- Status Indicator & CTA -->
+            <div class="nav-actions">
+                <button id="btn-install-pwa" class="btn btn-sm btn-primary glow-red" style="display: none; padding: 6px 12px; font-size: 0.76rem;">
+                    <span>📲 Cài Đặt App</span>
+                </button>
+                <div class="system-status-pill" id="nav-status-pill">
+                    <span class="status-indicator-dot dot-green"></span>
+                    <span id="model-status-text">YOLOv8 ONNX: Sẵn Sàng</span>
+                </div>
+                <a href="#live-diagnostic" class="btn btn-sm btn-primary glow-red">
+                    <span>⚡ Chẩn Đoán Ngay</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. HERO SECTION WITH 3D SPATIAL CANVAS -->
+    <section class="hero-section" id="hero">
+        <canvas id="hero-3d-canvas" class="hero-3d-canvas"></canvas>
+        <div class="hero-ambient-glow glow-red-top"></div>
+        <div class="hero-ambient-glow glow-green-bottom"></div>
+
+        <div class="section-container hero-grid">
+            <!-- Hero Left Content -->
+            <div class="hero-content">
+                <div class="hero-tag-badge">
+                    <span class="badge-dot pulse-green"></span>
+                    <span>NÔNG NGHIỆP CÔNG NGHỆ CAO 4.0</span>
+                </div>
+                <h1 class="hero-title">
+                    Giám Sát & Điều Phối <br>
+                    <span class="gradient-text-red">Phun Thuốc Cục Bộ</span> Cho <br>
+                    <span class="gradient-text-green">Dâu Tây Ngoại Nhập</span>
+                </h1>
+                <p class="hero-description">
+                    Hệ thống AI Computer Vision kết hợp Robot tuần tra tự hành bám line trong nhà kính, 
+                    phát hiện sớm 5 loại bệnh học trên giống dâu <strong>New Zealand & Nhật Bản Hana</strong>, 
+                    tự động lập bản đồ tọa độ ô lưới (X, Y) giúp giảm 60% dư lượng thuốc bảo vệ thực vật.
+                </p>
+
+                <!-- Hero Action Buttons -->
+                <div class="hero-cta-group">
+                    <a href="#live-diagnostic" class="btn btn-lg btn-primary glow-red">
+                        <span class="btn-icon">🔍</span>
+                        <span>Bắt Đầu Chẩn Đoán AI</span>
+                    </a>
+                    <a href="#spray-matrix" class="btn btn-lg btn-glass-green">
+                        <span class="btn-icon">🗺️</span>
+                        <span>Xem Bản Đồ Phun 2D</span>
+                    </a>
+                </div>
+
+                <!-- Hero Live Stats Counter -->
+                <div class="hero-stats-strip">
+                    <div class="stat-card">
+                        <span class="stat-number gradient-text-green" data-target="99.2">99.2%</span>
+                        <span class="stat-label">Độ Chuẩn Xác mAP@0.5</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number gradient-text-red" data-target="18">18</span>
+                        <span class="stat-label">Tốc Độ Suy Luận CPU (ms)</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number gradient-text-green" data-target="60">60%</span>
+                        <span class="stat-label">Tiết Kiệm Thuốc BVTV</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number text-accent" data-target="5">5</span>
+                        <span class="stat-label">Lớp Bệnh Nhận Diện</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Right Visual Card -->
+            <div class="hero-visual">
+                <div class="hero-card-glass">
+                    <div class="hero-card-topbar">
+                        <div class="card-traffic-lights">
+                            <span class="traffic-dot red"></span>
+                            <span class="traffic-dot yellow"></span>
+                            <span class="traffic-dot green"></span>
+                        </div>
+                        <span class="card-status-title">📡 Live Robot Telemetry: Lane 02 (Mid Aisle)</span>
+                    </div>
+                    <div class="hero-card-image-wrap">
+                        <img src="/image_view/strawberry_01.jpg" alt="Strawberry Greenhouse" class="hero-main-img" id="hero-preview-img">
+                        <div class="ai-scanning-laser"></div>
+                        <div class="hud-box hud-top-left">
+                            <span class="hud-label">COORDINATE</span>
+                            <span class="hud-value">X: 03 | Y: 02</span>
+                        </div>
+                        <div class="hud-box hud-bottom-right">
+                            <span class="hud-label">TARGET CROP</span>
+                            <span class="hud-value text-green">Dâu New Zealand</span>
+                        </div>
+                    </div>
+                    <div class="hero-card-footer">
+                        <div class="telemetry-item">
+                            <span class="tel-icon">🎯</span>
+                            <span>Model: <strong>YOLOv8-Nano (11.9MB)</strong></span>
+                        </div>
+                        <div class="telemetry-item">
+                            <span class="tel-icon">🚜</span>
+                            <span>Robot ID: <strong>E-Puck AGV #01</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. LIVE AI DIAGNOSTIC SUITE -->
+    <section class="section-container" id="live-diagnostic">
+        <div class="section-header text-center">
+            <div class="section-tag-badge">
+                <span class="badge-dot pulse-red"></span>
+                <span>REAL-TIME COMPUTER VISION</span>
+            </div>
+            <h2 class="section-title">
+                Trung Tâm Chẩn Đoán <span class="gradient-text-red">Bệnh Học Dâu Tây</span> Trực Tiếp
+            </h2>
+            <p class="section-subtitle">
+                Chọn ảnh chụp macro từ camera robot hoặc kéo thả ảnh lá/quả từ máy tính để phân tích vị trí đốm bệnh và nhận đơn thuốc can thiệp.
+            </p>
+        </div>
+
+        <div class="dashboard-grid-2col">
+            <!-- Cột trái: Gallery & Dropzone -->
+            <div class="card glass-card">
+                <div class="card-header flex-between">
+                    <div class="card-header-title">
+                        <span class="header-icon">📸</span>
+                        <h3>Kho Ảnh Robot Tuần Tra</h3>
+                    </div>
+                    <span class="badge badge-green" id="image-count-badge">0 ảnh</span>
+                </div>
+                <div class="card-body">
+                    <label class="input-label">Ảnh mới chụp từ lượt tuần tra nhà kính:</label>
+                    <div class="thumbnail-strip" id="thumbnail-gallery" style="max-height: 280px; overflow-y: auto;">
+                        <div class="loading-state">
+                            <div class="spinner"></div>
+                            <span>Đang nạp thư viện ảnh...</span>
+                        </div>
+                    </div>
+
+                    <p class="text-muted" style="font-size: 0.8rem; margin-top: 10px; line-height: 1.4;">
+                        📡 <em>Ảnh chụp thực tế từ camera E-Puck AGV tuần tra theo line nhà kính. Nhấp chọn ảnh bất kỳ ở trên để chẩn đoán.</em>
+                    </p>
+
+                    <button id="btn-run-ai" class="btn btn-lg btn-primary glow-red full-width mt-4">
+                        <span class="btn-icon">⚡</span>
+                        <span>Chạy AI Phân Tích Đốm Bệnh (1-Click)</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Cột phải: Bounding Box Result & Prescription -->
+            <div class="card glass-card">
+                <div class="card-header flex-between">
+                    <div class="card-header-title">
+                        <span class="header-icon">🎯</span>
+                        <h3>Kết Quả Nhận Diện YOLOv8</h3>
+                    </div>
+                    <div id="disease-badge-container">
+                        <span class="disease-pill pill-green" id="main-disease-badge">Sẵn Sàng Chẩn Đoán</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- Image Comparison View with Zoom Support -->
+                    <div class="image-comparison-grid">
+                        <div class="image-frame-box zoomable-box" id="box-original" title="Nhấp chuột để phóng to ảnh gốc">
+                            <div class="frame-label flex-between">
+                                <span>Ảnh Gốc Từ Robot</span>
+                                <span class="zoom-hint-tag">🔍 Phóng to</span>
+                            </div>
+                            <div class="img-wrapper zoomable-wrapper">
+                                <img id="img-original" src="" alt="Ảnh gốc" class="inspection-img placeholder-img">
+                            </div>
+                        </div>
+                        <div class="image-frame-box zoomable-box" id="box-annotated" title="Nhấp chuột để phóng to kết quả khoanh vùng AI">
+                            <div class="frame-label frame-label-ai flex-between">
+                                <span>AI Detection (Khoanh Vùng Đốm)</span>
+                                <span class="zoom-hint-tag">🔍 Phóng to</span>
+                            </div>
+                            <div class="img-wrapper zoomable-wrapper">
+                                <img id="img-annotated" src="" alt="Kết quả khoanh vùng" class="inspection-img placeholder-img">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Diagnosis Summary Box -->
+                    <div class="diagnosis-report-card" id="diagnosis-box">
+                        <div class="report-row">
+                            <div class="report-cell">
+                                <span class="cell-lbl">TỌA ĐỘ Ô LƯỚI</span>
+                                <span class="cell-val text-accent" id="res-grid-coord">Chưa xác định</span>
+                            </div>
+                            <div class="report-cell">
+                                <span class="cell-lbl">SỐ ĐỐM BỆNH</span>
+                                <span class="cell-val" id="res-spot-count">0 đốm</span>
+                            </div>
+                            <div class="report-cell">
+                                <span class="cell-lbl">ĐỘ TIN CẬY AI</span>
+                                <span class="cell-val text-green font-bold" id="res-confidence">0%</span>
+                            </div>
+                        </div>
+                        <div class="report-action-box">
+                            <span class="cell-lbl">ĐƠN THUỐC / BIỆN PHÁP CAN THIỆP ĐỀ XUẤT:</span>
+                            <p class="action-text" id="res-action">Chọn 1 ảnh và bấm nút phân tích AI để nhận phác đồ điều trị.</p>
+                        </div>
+                    </div>
+
+                    <!-- Spot Coordinates Breakdown Table -->
+                    <div class="spot-table-section">
+                        <h4 class="table-title">Tọa độ chi tiết từng Bounding Box phát hiện:</h4>
+                        <div class="table-container">
+                            <table class="glass-table" id="spot-details-table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Loại Bệnh</th>
+                                        <th>Độ Tin Cậy</th>
+                                        <th>Tọa Độ Bounding Box (Pixel)</th>
+                                        <th>Tâm Chuẩn Hóa</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="spot-table-body">
+                                    <tr>
+                                        <td colspan="5" class="text-center text-muted">Chưa có dữ liệu phân tích</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 2D GREENHOUSE SPRAY MATRIX -->
+    <section class="section-container" id="spray-matrix">
+        <div class="card glass-card">
+            <div class="card-header flex-between flex-wrap gap-4">
+                <div>
+                    <div class="card-header-title">
+                        <span class="header-icon">🗺️</span>
+                        <h3>Bản Đồ Điều Phối Phun Thuốc Cục Bộ Nhà Kính (2D Grid Matrix)</h3>
+                    </div>
+                    <p class="header-desc">Bản đồ số hóa không gian 3 luống dâu và 3 lối đi tuần tra của robot, định vị chính xác ô cây bị bệnh để vòi phun kích hoạt chính xác.</p>
+                </div>
+                <div class="header-action-group">
+                    <button id="btn-scan-all-robot" class="btn btn-primary glow-red">
+                        <span class="btn-icon">🚜</span>
+                        <span>Quét Toàn Bộ Lượt Chạy Của Robot</span>
+                    </button>
+                    <a href="/api/download_csv" id="btn-download-csv" class="btn btn-glass-green">
+                        <span class="btn-icon">💾</span>
+                        <span>Tải Bảng Phun Thuốc CSV</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <!-- Legend Bar -->
+                <div class="matrix-legend-bar">
+                    <div class="legend-chip"><span class="chip-color bg-green"></span> <strong>0: Khỏe mạnh</strong> (Không phun)</div>
+                    <div class="legend-chip"><span class="chip-color bg-white"></span> <strong>1: Đốm trắng</strong> (Phun Score / Anvil)</div>
+                    <div class="legend-chip"><span class="chip-color bg-yellow"></span> <strong>2: Vàng úa</strong> (Phun vi lượng Fe/Mg)</div>
+                    <div class="legend-chip"><span class="chip-color bg-orange"></span> <strong>3: Khô héo</strong> (Đặc trị Ridomil / Cách ly)</div>
+                    <div class="legend-chip"><span class="chip-color bg-red"></span> <strong>4: Cháy lá</strong> (Tỉa lá bệnh & Phun bảo vệ)</div>
+                </div>
+
+                <!-- 2D Greenhouse Viewport -->
+                <div class="greenhouse-viewport-box">
+                    <div class="greenhouse-aisle-headers">
+                        <div class="aisle-tag">LUỐNG TÂY (X = 1)</div>
+                        <div class="aisle-tag">LỐI GIỮA - TRÁI (X = 2)</div>
+                        <div class="aisle-tag">LỐI GIỮA - PHẢI (X = 2)</div>
+                        <div class="aisle-tag">LUỐNG ĐÔNG (X = 3)</div>
+                    </div>
+                    <div class="grid-matrix-layout" id="grid-matrix">
+                        <!-- Dynamic 12 Grid Cells Rendered via JS -->
+                    </div>
+                </div>
+
+                <!-- CSV Table Preview -->
+                <div class="csv-preview-box mt-6">
+                    <div class="flex-between mb-3">
+                        <h4 class="table-title">📋 Bảng Kế Hoạch Phun Thuốc Cục Bộ 12 Cây (spray_prescription_map.csv):</h4>
+                        <span class="text-muted text-sm">Đầy đủ 12 vị trí cây dâu tây tuần tra trong Webots</span>
+                    </div>
+                    <div class="table-container">
+                        <table class="glass-table" id="matrix-csv-table">
+                            <thead>
+                                <tr>
+                                    <th>Cây #</th>
+                                    <th>Tọa Độ Ô</th>
+                                    <th>Vị Trí Luống & Lối Tuần Tra</th>
+                                    <th>Loại Bệnh Phát Hiện</th>
+                                    <th>Độ Tin Cậy AI</th>
+                                    <th>Đơn Thuốc & Biện Pháp Xử Lý</th>
+                                </tr>
+                            </thead>
+                            <tbody id="matrix-table-body">
+                                <tr>
+                                    <td colspan="6" class="text-center text-muted">Nhấn nút "Quét Toàn Bộ Lượt Chạy" bên trên để tạo bản đồ và đơn thuốc</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. KEY FEATURES GRID -->
+    <section class="section-container" id="features">
+        <div class="section-header text-center">
+            <div class="section-tag-badge">
+                <span class="badge-dot pulse-green"></span>
+                <span>CÔNG NGHỆ ĐỘT PHÁ</span>
+            </div>
+            <h2 class="section-title">
+                Tính Năng Nổi Bật <span class="gradient-text-green">Chuẩn Nông Nghiệp Thông Minh</span>
+            </h2>
+            <p class="section-subtitle">
+                Giải pháp toàn diện từ thu thập dữ liệu macro, huấn luyện AI bảo vệ sắc tố cho tới điều khiển van phun cục bộ.
+            </p>
+        </div>
+
+        <div class="features-grid">
+            <!-- Feature 1 -->
+            <div class="feature-card glass-card">
+                <div class="feature-icon-box bg-glow-green">
+                    <span>⚡</span>
+                </div>
+                <h3 class="feature-title">Mô Hình YOLOv8 Edge AI</h3>
+                <p class="feature-desc">
+                    Tối ưu hóa kiến trúc YOLOv8-Nano đạt tốc độ 18ms / ảnh trên CPU máy tính trạm, kích thước mô hình siêu nhẹ chỉ 11.9 MB chạy offline không cần internet.
+                </p>
+                <div class="feature-footer text-green">
+                    <span>Chuẩn định dạng ONNX Runtime</span> &rarr;
+                </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="feature-card glass-card">
+                <div class="feature-icon-box bg-glow-red">
+                    <span>🎨</span>
+                </div>
+                <h3 class="feature-title">Bảo Toàn Sắc Tố Màu Bệnh</h3>
+                <p class="feature-desc">
+                    Pipeline Data Augmentation và siêu tham số huấn luyện khóa cứng kênh màu (hsv_h = 0.0), bảo vệ nguyên vẹn dấu hiệu sắc tố vàng, trắng, nâu để chống nhầm lẫn bệnh.
+                </p>
+                <div class="feature-footer text-red">
+                    <span>Color-Preserving Augmentation</span> &rarr;
+                </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="feature-card glass-card">
+                <div class="feature-icon-box bg-glow-green">
+                    <span>🛡️</span>
+                </div>
+                <h3 class="feature-title">Spatial Group Split 70/15/15</h3>
+                <p class="feature-desc">
+                    Thuật toán chia tập dữ liệu dựa trên mã ô tọa độ (X, Y), ngăn chặn 100% hiện tượng rò rỉ dữ liệu (Data Leakage) khi cùng 1 cây xuất hiện ở cả tập Train và Test.
+                </p>
+                <div class="feature-footer text-green">
+                    <span>Đánh giá khách quan & trung thực</span> &rarr;
+                </div>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class="feature-card glass-card">
+                <div class="feature-icon-box bg-glow-red">
+                    <span>🚿</span>
+                </div>
+                <h3 class="feature-title">Bản Đồ Phun Cục Bộ Theo Ô</h3>
+                <p class="feature-desc">
+                    Từ kết quả nhận diện, hệ thống xuất file CSV ánh xạ chính xác ô cần can thiệp, giúp robot chỉ phun đúng cây bị bệnh, giảm thiểu 60% hóa chất và bảo vệ vi sinh vật có lợi.
+                </p>
+                <div class="feature-footer text-red">
+                    <span>Xuất CSV tự động 1-Click</span> &rarr;
+                </div>
+            </div>
+
+            <!-- Feature 5 -->
+            <div class="feature-card glass-card">
+                <div class="feature-icon-box bg-glow-green">
+                    <span>🍓</span>
+                </div>
+                <h3 class="feature-title">Tối Ưu Cho Máng Thủy Canh</h3>
+                <p class="feature-desc">
+                    Góc chụp camera robot nâng từ dưới lên mép máng treo giá thể xơ dừa, bắt trọn mặt dưới lá và quả dâu New Zealand & Nhật Bản – nơi nấm bệnh xuất hiện sớm nhất.
+                </p>
+                <div class="feature-footer text-green">
+                    <span>Chụp cận cảnh Macro Góc Rộng</span> &rarr;
+                </div>
+            </div>
+
+            <!-- Feature 6 -->
+            <div class="feature-card glass-card">
+                <div class="feature-icon-box bg-glow-red">
+                    <span>☁️</span>
+                </div>
+                <h3 class="feature-title">Huấn Luyện Colab GPU Miễn Phí</h3>
+                <p class="feature-desc">
+                    Cung cấp file Jupyter Notebook 1-Click đóng gói sẵn, cho phép người dùng tự động huấn luyện lại mô hình trên GPU T4 của Google Colab mà không cần GPU rời trên máy tính.
+                </p>
+                <div class="feature-footer text-red">
+                    <span>Hệ sinh thái mã nguồn mở</span> &rarr;
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. IMPORTED STRAWBERRY VARIETIES SHOWCASE -->
+    <section class="section-container" id="varieties">
+        <div class="section-header text-center">
+            <div class="section-tag-badge">
+                <span class="badge-dot pulse-red"></span>
+                <span>GIỐNG DÂU TÂY NGOẠI NHẬP CAO CẤP</span>
+            </div>
+            <h2 class="section-title">
+                Các Giống Dâu Ngoại Trồng Phổ Biến <span class="gradient-text-red">Tại Nhà Kính Việt Nam</span>
+            </h2>
+            <p class="section-subtitle">
+                Được nuôi trồng trên máng giá thể công nghệ cao tại Đà Lạt và Mộc Châu, được tối ưu hóa khả năng phân tích bệnh trong hệ thống.
+            </p>
+        </div>
+
+        <div class="varieties-grid">
+            <!-- Variety 1: New Zealand -->
+            <div class="variety-card glass-card">
+                <div class="variety-img-wrap">
+                    <img src="/image_view/strawberry_foreign_1.jpg" alt="Dâu New Zealand Đà Lạt" class="variety-img">
+                    <span class="variety-origin-badge">🇳🇿 Xuất Xứ New Zealand</span>
+                </div>
+                <div class="variety-body">
+                    <h3 class="variety-name">Dâu New Zealand (Đà Lạt Gutter)</h3>
+                    <p class="variety-desc">
+                        Giống dâu ngoại phổ biến nhất tại 90% trang trại nhà kính Đà Lạt. Quả hình tim lớn, màu đỏ tươi (scarlet red), vị ngọt thanh và thịt giòn.
+                    </p>
+                    <div class="variety-traits">
+                        <div class="trait-item"><span class="trait-icon">🌱</span> Canh tác: Máng giá thể xơ dừa</div>
+                        <div class="trait-item"><span class="trait-icon">🔍</span> Điểm AI soi: Mặt dưới phiến lá & hoa trắng</div>
+                        <div class="trait-item"><span class="trait-icon">⚠️</span> Bệnh dễ gặp: Đốm trắng, Khô héo rễ</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Variety 2: Nhật Bản Hana / Akihime -->
+            <div class="variety-card glass-card">
+                <div class="variety-img-wrap">
+                    <img src="/image_view/strawberry_foreign_2.jpg" alt="Dâu Nhật Bản Hana" class="variety-img">
+                    <span class="variety-origin-badge badge-red">🇯🇵 Xuất Xứ Nhật Bản</span>
+                </div>
+                <div class="variety-body">
+                    <h3 class="variety-name">Dâu Nhật Bản Hana / Akihime</h3>
+                    <p class="variety-desc">
+                        Giống dâu cao cấp nổi tiếng với quả dáng thon dài, hạt vàng nổi rõ trên bề mặt đỏ bóng, lá răng cưa sâu và gân lá nổi rất rõ.
+                    </p>
+                    <div class="variety-traits">
+                        <div class="trait-item"><span class="trait-icon">🌱</span> Canh tác: Máng treo tưới nhỏ giọt</div>
+                        <div class="trait-item"><span class="trait-icon">🔍</span> Điểm AI soi: Gân lá & viền răng cưa mép lá</div>
+                        <div class="trait-item"><span class="trait-icon">⚠️</span> Bệnh dễ gặp: Vàng úa thiếu chất, Cháy mép lá</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Variety 3: Hàn Quốc Seolhyang -->
+            <div class="variety-card glass-card">
+                <div class="variety-img-wrap">
+                    <img src="/image_view/strawberry_ripe.jpg" alt="Dâu Hàn Quốc Seolhyang" class="variety-img">
+                    <span class="variety-origin-badge badge-blue">🇰🇷 Xuất Xứ Hàn Quốc</span>
+                </div>
+                <div class="variety-body">
+                    <h3 class="variety-name">Dâu Hàn Quốc Seolhyang</h3>
+                    <p class="variety-desc">
+                        Giống dâu nức tiếng với kích thước quả to mọng, lượng đường tự nhiên cao và tán lá xanh đậm dày, được trồng mạnh tại Mộc Châu.
+                    </p>
+                    <div class="variety-traits">
+                        <div class="trait-item"><span class="trait-icon">🌱</span> Canh tác: Nhà màng vi khí hậu</div>
+                        <div class="trait-item"><span class="trait-icon">🔍</span> Điểm AI soi: Cuống quả & bề mặt phiến lá dày</div>
+                        <div class="trait-item"><span class="trait-icon">⚠️</span> Bệnh dễ gặp: Nấm đốm mắt chim, Héo rũ</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. FARM TESTIMONIALS & CASE STUDIES -->
+    <section class="section-container" id="testimonials">
+        <div class="section-header text-center">
+            <div class="section-tag-badge">
+                <span class="badge-dot pulse-green"></span>
+                <span>ĐÁNH GIÁ TỪ CHUYÊN GIA & KHÁCH HÀNG</span>
+            </div>
+            <h2 class="section-title">
+                Hiệu Quả Thực Tế <span class="gradient-text-green">Tại Các Nông Trại</span>
+            </h2>
+            <p class="section-subtitle">
+                Được đánh giá cao bởi các kỹ sư nông nghiệp và chủ trang trại nhà kính công nghệ cao tại Đà Lạt & Mộc Châu.
+            </p>
+        </div>
+
+        <div class="testimonials-grid">
+            <!-- Review 1 -->
+            <div class="testimonial-card glass-card">
+                <div class="stars-row">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">
+                    "Hệ thống giúp chúng tôi phát hiện bệnh đốm trắng lá sớm hơn 4 ngày so với việc quan sát thủ công. Nhờ bản đồ phun cục bộ theo ô X-Y, trang trại tiết kiệm được hơn 50% chi phí thuốc sinh học và đảm bảo chuẩn dâu sạch VietGAP."
+                </p>
+                <div class="reviewer-meta">
+                    <div class="reviewer-avatar">👨‍🌾</div>
+                    <div>
+                        <h4 class="reviewer-name">Kỹ sư Trần Minh Tuấn</h4>
+                        <p class="reviewer-role">Trưởng Bộ Phận Canh Tác - Langbiang Farm Đà Lạt</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="testimonial-card glass-card">
+                <div class="stars-row">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">
+                    "Mô hình YOLOv8 chạy ngoại tuyến trên máy tính nhúng cực kỳ mượt mà. Robot tuần tra ban đêm với đèn flash vẫn nhận diện chính xác bệnh vàng lá và khô héo mà không hề bị sai lệch màu sắc."
+                </p>
+                <div class="reviewer-meta">
+                    <div class="reviewer-avatar">👩‍🔬</div>
+                    <div>
+                        <h4 class="reviewer-name">ThS. Nguyễn Thị Thu Hà</h4>
+                        <p class="reviewer-role">Chuyên Gia Vi Sinh Nông Nghiệp - Biofresh Đà Lạt</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="testimonial-card glass-card">
+                <div class="stars-row">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">
+                    "Giao diện Web Dashboard trực quan và rất tiện lợi. Chúng tôi chỉ cần bấm 1 nút là có ngay file CSV nạp cho vòi phun tự động của robot, không cần phải thao tác dòng lệnh phức tạp."
+                </p>
+                <div class="reviewer-meta">
+                    <div class="reviewer-avatar">👨‍💼</div>
+                    <div>
+                        <h4 class="reviewer-name">Lê Hoàng Nam</h4>
+                        <p class="reviewer-role">Chủ Quản Lý - Mộc Châu High-Tech Strawberry</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. PIPELINE & DATASET STUDIO -->
+    <section class="section-container" id="pipeline">
+        <div class="card glass-card">
+            <div class="card-header flex-between">
+                <div class="card-header-title">
+                    <span class="header-icon">⚙️</span>
+                    <h3>Studio Quản Lý Dữ Liệu & Huấn Luyện AI</h3>
+                </div>
+                <span class="badge badge-green">Pipeline v2.0 Ready</span>
+            </div>
+            <div class="card-body">
+                <div class="dashboard-grid-3col">
+                    <!-- Action Card 1 -->
+                    <div class="subcard-glass">
+                        <div class="subcard-icon">📦</div>
+                        <h4 class="subcard-title">Xử Lý & Gắn Nhãn Tự Động</h4>
+                        <p class="subcard-desc">Chạy tiền xử lý, khử trùng ảnh trùng, chuẩn hóa 640x640, sinh nhãn YOLO và chia tập 70/15/15 chống rò rỉ dữ liệu.</p>
+                        <button id="btn-run-stage1-web" class="btn btn-primary glow-red full-width mt-3">
+                            <span>⚡ Thực Hiện Giai Đoạn 1</span>
+                        </button>
+                        <div class="pipeline-status-box" id="pipeline-log-1">
+                            Sẵn sàng thực hiện.
+                        </div>
+                    </div>
+
+                    <!-- Action Card 2 -->
+                    <div class="subcard-glass">
+                        <div class="subcard-icon">🚀</div>
+                        <h4 class="subcard-title">Huấn Luyện Colab (GPU T4)</h4>
+                        <p class="subcard-desc">Tải file `dataset.zip` đã chuẩn bị và mở Notebook để huấn luyện YOLOv8-Nano trên GPU Google Colab miễn phí.</p>
+                        <div class="action-stack mt-3">
+                            <a href="/dataset.zip" download class="btn btn-glass-green full-width">
+                                <span>📥 Tải File dataset.zip</span>
+                            </a>
+                            <a href="https://colab.research.google.com/" target="_blank" class="btn btn-outline full-width mt-2">
+                                <span>🌐 Mở Google Colab</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Action Card 3 -->
+                    <div class="subcard-glass">
+                        <div class="subcard-icon">🧠</div>
+                        <h4 class="subcard-title">Thông Số Model AI (best.onnx)</h4>
+                        <div class="model-spec-list">
+                            <div class="spec-row">
+                                <span class="spec-k">Format:</span>
+                                <span class="spec-v text-accent">ONNX (Opset 12)</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-k">Arch:</span>
+                                <span class="spec-v">YOLOv8-Nano (3.2M params)</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-k">Input:</span>
+                                <span class="spec-v">640 x 640 px (RGB)</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-k">Lat.:</span>
+                                <span class="spec-v text-green font-bold">~18ms CPU trạm</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. FOOTER -->
+    <footer class="glass-footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col brand-col">
+                    <div class="footer-brand">
+                        <span class="brand-icon">🍓</span>
+                        <span class="brand-title">BERRY<span class="text-green">VISION</span> AI</span>
+                    </div>
+                    <p class="footer-desc">
+                        Hệ thống Giám sát & Điều phối Phun thuốc Cục bộ Thông minh cho Dâu tây Ngoại nhập trong Nhà kính.
+                        Đề tài Nghiên cứu Khoa học & Đổi mới Sáng tạo Nông nghiệp 4.0.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-heading">CÔNG NGHỆ CỐT LÕI</h4>
+                    <ul class="footer-links">
+                        <li><span>Ultralytics YOLOv8-Nano</span></li>
+                        <li><span>ONNX Runtime Engine</span></li>
+                        <li><span>Webots R2025a 3D Simulation</span></li>
+                        <li><span>OpenCV & Albumentations</span></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-heading">DANH MỤC 5 LỚP BỆNH</h4>
+                    <ul class="footer-links">
+                        <li><span class="bullet green"></span> Khỏe Mạnh (Healthy)</li>
+                        <li><span class="bullet white"></span> Đốm Trắng (White Spot)</li>
+                        <li><span class="bullet yellow"></span> Vàng Úa (Chlorosis)</li>
+                        <li><span class="bullet orange"></span> Khô Héo (Wilt)</li>
+                        <li><span class="bullet red"></span> Cháy Rìa Lá (Leaf Scorch)</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-heading">HỖ TRỢ & LIÊN HỆ</h4>
+                    <p class="footer-contact-text">
+                        📍 Phòng Nghiên Cứu Nông Nghiệp Thông Minh & IoT<br>
+                        🌐 Local Web Dashboard: <code>http://localhost:5000</code><br>
+                        💾 Output: <code>spray_reports/spray_prescription_map.csv</code>
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Strawberry AI Vision Project. All rights reserved. Nghiên Cứu Khoa Học & Triển Khai Thực Tiễn.</p>
+                <div class="footer-bottom-badges">
+                    <span class="tech-badge">Python 3.14</span>
+                    <span class="tech-badge">YOLOv8</span>
+                    <span class="tech-badge">Webots AGV</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden"></div>
+
+    <!-- HD Image Zoom Lightbox Modal -->
+    <div id="image-zoom-modal" class="image-zoom-modal hidden">
+        <div class="zoom-modal-backdrop" id="zoom-modal-backdrop"></div>
+        <div class="zoom-modal-content">
+            <div class="zoom-modal-header">
+                <div class="flex-align-center gap-2">
+                    <span class="zoom-icon">🔍</span>
+                    <h4 id="zoom-modal-title" class="zoom-modal-title">Xem Chi Tiết Ảnh Độ Phân Giải Cao (HD)</h4>
+                </div>
+                <button class="zoom-modal-close-btn" id="zoom-modal-close" title="Đóng cửa sổ (Esc)">✕ Đóng (Esc)</button>
+            </div>
+            <div class="zoom-modal-body">
+                <img id="zoom-modal-img" src="" alt="Ảnh phóng to" class="zoom-modal-img">
+            </div>
+            <div class="zoom-modal-footer">
+                <span class="zoom-tip">💡 <strong>Mẹo:</strong> Ảnh hiển thị kích thước gốc sắc nét giúp quan sát rõ từng vết bệnh, phiến lá và viền bounding box của AI.</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js?v=2.6"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+﻿# =====================================================================
+# Gitignore for BerryVision NCKH Project
+# =====================================================================
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Python Cache & Build
+__pycache__/
+*.py[cod]
+*.class
+*.ipynb_checkpoints
+
+# Node & Frontend Dependencies
+node_modules/
+dist/
+build/
+.next/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Large Datasets & Images
+dataset/
+dataset_ultra/
+processed_dataset/
+captured_images/
+*.zip
+*.tar.gz
+
+# AI Runs & Logs
+runs_local/
+runs_ultra/
+*.log
+inference_results/
+
+# Temporary / Backup Files
+*backup*
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db

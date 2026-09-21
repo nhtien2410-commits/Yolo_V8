@@ -1,0 +1,20 @@
+﻿2. Tên ý tưởng
+Ứng dụng công nghệ thị giác máy tính và xe tự hành bám line không gian trong theo dõi sức khỏe của cây [Dâu tây / Dưa lưới] trong nhà kính.
+3. Lĩnh vực dự thi
+Công nghệ - Kỹ thuật
+4. Tính mới của ý tưởng
+Thay vì đi theo lối mòn là lắp đặt hệ thống hàng chục, hàng trăm camera cố định góc rộng (gây tốn kém chi phí đầu tư, đi dây phức tạp, bảo trì vất vả), ý tưởng mang lại hai điểm mới mang tính đột phá về tối ưu hóa phần cứng:
+Giải pháp thay thế hệ thống camera tĩnh bằng 01 robot di chuyển: Chỉ sử dụng duy nhất một xe tự hành bám line giá rẻ chạy quanh ma trận lưới để giám sát toàn bộ nhà kính. Cắt giảm tới 80% chi phí thiết bị và lắp đặt so với hệ thống camera cố định.
+Cơ chế tiếp cận chụp cận cảnh (Macro-imaging): Camera di động gắn trên xe cho phép tiếp cận sát gốc, lách vào từng kẽ lá ở cự ly gần. Điều này giúp thu thập hình ảnh độ phân giải cao, soi rõ từng đốm nấm bệnh hay dấu hiệu héo từ giai đoạn sớm nhất – điều mà camera cố định góc rộng từ trên cao hoàn toàn bất khả thi.
+5. Nội dung nghiên cứu
+Thiết kế và chế tạo khung gầm xe tự hành bám line tối giản, có khả năng vận hành ổn định trên địa hình nhà kính.
+Xây dựng thuật toán điều khiển dừng và chụp ảnh đồng bộ chính xác tại từng ô tọa độ lưới (X, Y) đã chuẩn hóa.
+Thu thập bộ dữ liệu ảnh chụp cận cảnh (Close-up dataset) về các trạng thái bệnh lý của cây và huấn luyện mô hình AI (YOLO/CNN) để phân loại tự động.
+6. Phương pháp nghiên cứu
+Phương pháp tích hợp hệ thống chi phí thấp: Kết hợp công nghệ bám line quang học/từ tính với cơ chế đếm vạch mã hóa nhị phân để định vị chính xác ô đất mà không cần dùng cảm biến LiDAR hay GPS đắt tiền.
+Phương pháp quang học thực nghiệm (Chống biến thiên ánh sáng): Sử dụng hệ thống đèn LED Flash cường độ cao đánh sáng cực nhanh (1/1000s) kết hợp kính lọc phân cực (Polarized Filter). Phương pháp này giúp triệt tiêu hoàn toàn sự thay đổi của ánh sáng mặt trời tự nhiên và hiện tượng lóa nước trên lá, đảm bảo ảnh chụp gần luôn đồng nhất về chất lượng màu sắc để AI phân tích.
+Phương pháp xử lý dữ liệu tập trung (Offline Mode): Xe đóng vai trò là một "Data Logger" lưu ảnh chất lượng cao vào thẻ nhớ. Dữ liệu sẽ được trút về máy tính trung tâm để xử lý AI sau khi xe hoàn thành hành trình, giúp xe tiết kiệm năng lượng tối đa và không phụ thuộc vào sóng Wi-Fi nhà kính.
+7. Nhu cầu kinh tế xã hội
+Tối ưu hóa bài toán kinh tế cho nhà vườn: Giúp các trang trại vừa và nhỏ tiếp cận công nghệ cao với chi phí đầu tư ban đầu cực thấp (dưới 10 triệu đồng cho một hệ thống robot, thay vì hàng trăm triệu cho camera cố định hoặc drone).
+Ứng dụng thực tế trong nông nghiệp chính xác: Việc robot báo chính xác tọa độ ô đất (X, Y) bị bệnh giúp người nông dân chỉ cần phun thuốc cục bộ tại ô đó, tiết kiệm đến 70% chi phí thuốc bảo vệ thực vật, bảo vệ môi trường và đáp ứng tiêu chuẩn nông sản sạch (VietGAP, GlobalGAP).
+Giải quyết bài toán thiếu hụt nhân lực: Thay thế quy trình đi bộ kiểm tra thủ công lặp đi lặp lại của con người bằng một cỗ máy tự động hoạt động liên tục, chính xác, không bỏ sót tế bào bệnh nhỏ nhất.

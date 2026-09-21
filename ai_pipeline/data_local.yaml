@@ -1,0 +1,11 @@
+path: C:/Users/ADMIN/Downloads/NCKH/dataset
+train: images/train
+val: images/val
+test: images/test
+nc: 5
+names:
+  0: khoe_manh
+  1: dom_trang
+  2: vang_ua
+  3: kho_heo
+  4: chay_la

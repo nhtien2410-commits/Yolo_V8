@@ -1,0 +1,24 @@
+{
+  "name": "BerryVision AI - Giám Sát Dâu Tây Nhà Kính",
+  "short_name": "BerryVisionAI",
+  "description": "Hệ thống AI giám sát và điều phối phun thuốc cục bộ dâu tây ngoại nhập trong nhà kính",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#090e17",
+  "theme_color": "#090e17",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
