@@ -168,6 +168,52 @@ export default function App() {
               </div>
             </div>
           </div>
+        {/* --- CÁC PHẦN NỘI DUNG MỚI ĐƯỢC THÊM VÀO ĐỂ NÚT BẤM HOẠT ĐỘNG --- */}
+        
+        <div id="ai-diagnostic" className="w-full min-h-[60vh] flex flex-col items-center justify-center border-t border-white/10 px-8 py-20">
+          <h2 className="text-4xl font-bold text-white mb-6">Chẩn Đoán AI</h2>
+          <p className="text-white/60 text-lg max-w-2xl text-center">
+            Hệ thống sử dụng YOLOv8 để phân tích hình ảnh và phát hiện các loại bệnh nấm, đốm lá trên dâu tây với độ chính xác cao.
+          </p>
+        </div>
+
+        <div id="spray-map" className="w-full min-h-[60vh] flex flex-col items-center justify-center border-t border-white/10 px-8 py-20 bg-[#0a0d12]">
+          <h2 className="text-4xl font-bold text-[#14b8a6] mb-6">Bản Đồ Phun 2D</h2>
+          <p className="text-white/60 text-lg max-w-2xl text-center">
+            Lưới tọa độ 2D của nhà kính được số hóa. Các điểm đỏ hiển thị ô cây đang bị bệnh cần phun thuốc cục bộ.
+          </p>
+        </div>
+
+        <div id="features" className="w-full min-h-[60vh] flex flex-col items-center justify-center border-t border-white/10 px-8 py-20">
+          <h2 className="text-4xl font-bold text-white mb-6">Tính Năng Đột Phá</h2>
+          <p className="text-white/60 text-lg max-w-2xl text-center">
+            Camera Macro cận cảnh + Kính phân cực CPL + LED Strobe giúp nhìn rõ bề mặt lá mà không bị chói sáng.
+          </p>
+        </div>
+
+        <div id="varieties" className="w-full min-h-[60vh] flex flex-col items-center justify-center border-t border-white/10 px-8 py-20 bg-[#0a0d12]">
+          <h2 className="text-4xl font-bold text-[#ef4444] mb-6">Giống Dâu Ngoại</h2>
+          <p className="text-white/60 text-lg max-w-2xl text-center">
+            Hỗ trợ giám sát các giống dâu cao cấp như New Zealand, Nhật Bản Hana...
+          </p>
+        </div>
+
+        <div id="reviews" className="w-full min-h-[60vh] flex flex-col items-center justify-center border-t border-white/10 px-8 py-20">
+          <h2 className="text-4xl font-bold text-white mb-6">Đánh Giá Thực Tế</h2>
+          <p className="text-white/60 text-lg max-w-2xl text-center">
+            Giảm 70% lượng hóa chất bảo vệ thực vật, tiết kiệm chi phí đầu tư ban đầu so với hệ thống camera cố định.
+          </p>
+        </div>
+
+        <div id="pipeline" className="w-full min-h-[60vh] flex flex-col items-center justify-center border-t border-white/10 px-8 py-20 bg-[#0a0d12]">
+          <h2 className="text-4xl font-bold text-[#14b8a6] mb-6">Pipeline Studio</h2>
+          <p className="text-white/60 text-lg max-w-2xl text-center">
+            Xem trực tiếp quá trình tiền xử lý ảnh và bóc tách đặc trưng của mạng nơ-ron tích chập AI.
+          </p>
+        </div>
+
+        {/* --- KẾT THÚC CÁC PHẦN THÊM MỚI --- */}
+
         </div>
       </div>
     </div>
