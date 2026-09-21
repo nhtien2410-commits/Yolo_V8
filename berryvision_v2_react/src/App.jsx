@@ -168,6 +168,7 @@ export default function App() {
               </div>
             </div>
           </div>
+                </div>
         {/* --- CÁC PHẦN NỘI DUNG MỚI ĐƯỢC THÊM VÀO ĐỂ NÚT BẤM HOẠT ĐỘNG --- */}
         
         <div id="ai-diagnostic" className="w-full min-h-[60vh] flex flex-col items-center justify-center border-t border-white/10 px-8 py-20">
@@ -214,7 +215,6 @@ export default function App() {
 
         {/* --- KẾT THÚC CÁC PHẦN THÊM MỚI --- */}
 
-        </div>
       </div>
     </div>
   );
